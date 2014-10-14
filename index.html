@@ -43,7 +43,7 @@ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF S
 DAMAGE.
 " />
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
-<title>TiddlyWiki — a non-linear personal web notebook</title>
+<title>SGBD — Sistemas Gestores de Bases de Datos</title>
 <!--~~ This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ~~--><!--~~ Raw markup ~~-->
 
 </head>
@@ -115,7 +115,50 @@ Error message and password prompt
 <noscript>
 <div id="splashArea">
 
-<div class=' tc-reveal' hidden='true'></div>
+<p>This <a class='tc-tiddlylink-external' href='http://tiddlywiki.com' target='_blank'>TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
+
+<li>$:/core</li>
+
+<li>$:/DefaultTiddlers</li>
+
+<li>$:/isEncrypted</li>
+
+<li>$:/SiteSubtitle</li>
+
+<li>$:/SiteTitle</li>
+
+<li>$:/state/showeditpreview</li>
+
+<li>$:/state/sidebar</li>
+
+<li>$:/StoryList</li>
+
+<li>$:/temp/info-plugin</li>
+
+<li>$:/temp/NewTagName</li>
+
+<li>$:/themes/tiddlywiki/snowwhite</li>
+
+<li>$:/themes/tiddlywiki/vanilla</li>
+
+<li>Actividades</li>
+
+<li>Actividades DCL en MySql</li>
+
+<li>Contenido</li>
+
+<li>DCL en MySql</li>
+
+<li>Índice</li>
+
+<li>La LOPD</li>
+
+<li>Seguridad de la Información</li>
+
+<li>The big three CIA</li>
+
+</ul>
+</p>
 
 
 
@@ -4655,8 +4698,44 @@ Error message and password prompt
     }
 }</pre>
 </div>
+<div created="20141014230459612" modified="20141014230504336" title="$:/DefaultTiddlers">
+<pre>Índice
+</pre>
+</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
+</div>
+<div created="20141014230443331" modified="20141014230454457" title="$:/SiteSubtitle">
+<pre>Sistemas Gestores de Bases de Datos</pre>
+</div>
+<div created="20141014230438059" modified="20141014230439999" title="$:/SiteTitle">
+<pre>SGBD</pre>
+</div>
+<div modified="20141014230919905" title="$:/state/showeditpreview">
+<pre>yes</pre>
+</div>
+<div modified="20141014232216133" title="$:/state/sidebar">
+<pre>no</pre>
+</div>
+<div list="[[Actividades DCL en MySql]] Actividades [[Seguridad de la Información]] [[DCL en MySql]] [[La LOPD]] [[The big three CIA]] Contenido Índice GettingStarted" title="$:/StoryList">
+<pre></pre>
+</div>
+<div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
+<pre>{
+    &quot;tiddlers&quot;: {
+        &quot;$:/info/browser&quot;: {
+            &quot;title&quot;: &quot;$:/info/browser&quot;,
+            &quot;text&quot;: &quot;yes&quot;
+        },
+        &quot;$:/info/node&quot;: {
+            &quot;title&quot;: &quot;$:/info/node&quot;,
+            &quot;text&quot;: &quot;no&quot;
+        }
+    }
+}</pre>
+</div>
+<div created="20141014230709174" modified="20141014232141384" title="$:/temp/NewTagName">
+<pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="A clean theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.2">
 <pre>{
@@ -4726,6 +4805,217 @@ Error message and password prompt
         }
     }
 }</pre>
+</div>
+<div created="20141014232025643" modified="20141014232040385" tags="Índice" title="Actividades">
+<pre></pre>
+</div>
+<div created="20141014232043839" modified="20141014232844599" tags="Actividades" title="Actividades DCL en MySql">
+<pre>!Actividad_1
+Recordatorio. Monta una bbdd con dos tablas una de compras y otra de productos. Establece alguna referencia de la una a la otra y algún tipo de principio semántico. ¿Cómo consigues cumplir con CIA?  
+
+!Actividad_2: 
+Recuperar contraseña de root en ~MySql:
+
+*Para el servidor y arráncalo de nuevo manualmente con la opción -skip-grant-tables para eliminar comprobación de usuarios.
+*Conéctate al servidor con `mysql -u root` y cambia la password de root.
+*Para el servidor y arráncalo de nuevo con el script /etc/init.d/mysql
+*Comprueba que efectivamente ahora puedes entrar con la nueva password.
+
+!Actividad_3: DCL_MySql (en parejas)
+*Crea base de datos con conjunto de caracteres latinos (acentos, eñe)
+*Crea el usuario nombre_compañero@IP_compañero. Donde nombre_compañero e IP_compañero son el nombre y la IP de tu pareja.
+*Asígnale al nuevo usuario unos cuantos permisos.
+*Solicita a tu compañero que se conecte a tu servidor y que averigüe qué permisos le has otorgado. Por otro lado, el habrá hecho lo propio, y tú tendrás que averiguar lo mismo en su servidor.
+
+!Actividad_4:Metadatos_MySql
+*Averigua el número de filas que tiene cada tabla de la base de datos 'mysql' sin acceder a la base de datos (utilizando el //information_schema//)</pre>
+</div>
+<div created="20141014230624953" modified="20141014230726252" tags="Índice" title="Contenido">
+<pre>&lt;&lt;list-links &quot;[tag[Contenido]]&quot;&gt;&gt;</pre>
+</div>
+<div created="20141014231138417" modified="20141014232003772" title="DCL en MySql">
+<pre>!Mecanismos de seguridad básicos en un SGBD
+(Repaso al sistema de control de acceso visto el año pasado)
+
+''Mecanismo para la verificación de la identidad de los usuarios.''
+
+*Identidad: Forma de identificarse un usuario (decir quién soy). Una identidad puede describir a un usuario,a un grupo de usuarios, puede tener una validez limitada en el tiempo o en número de usos o puede depender de otros criterios. Es una información en principio pública.
+*Autenticación: Forma de verificar un usuario su identidad. Es una información privada.
+''Mecanismo para el control del acceso: ''
+
+Permiten controlar qué usuarios pueden acceder a qué datos y qué pueden hacer con ellos. Es decir, controla la interacción entre sujetos (usuarios y procesos) y los objetos a los que acceden (tablas, esquemas, funciones, etc.). Está formado fundamentalmente por dos componentes:
+
+*Políticas de acceso: criterios para otorgar o denegar permisos de acceso a un objeto del sistema de información. 
+*Mecanismos de seguridad: todos aquellos procedimientos que velarán por el cumplimiento de las políticas de acceso.
+Existen fundamentalmente dos tipos de controles de acceso:
+
+*Control de acceso discrecional basado en privilegios (DAC: Discretionary Access Control): El mecanismo más común en los SGBD. Se basa en la identidad del usuario para otorgar o no el acceso a un objeto. Por tanto, para determinar si un usuario tiene acceso a un objeto el sistema consultará una tabla del estilo siguiente:
+||!Objeto1|!Objeto2|...|!~ObjetoN|
+|'Identidad1'||||Autorizaciones y restricciones|
+|'Identidad2'||Autorizaciones y restricciones|||
+|...|||||
+|'~IdentidadN'|Autorizaciones y restricciones||||
+*Control de acceso obligatorio (MAC). Seguridad multinivel. Utilizadas en entornos de máxima seguridad y bases de datos muy estructuradas (gobiernos, ejércitos, etc.). Se basan en que cada dato tiene un nivel de seguridad (no clasificado U, confidencial C, secreto S, máximo secreto TS) y cada identidad tiene una graduación similar (NS, C, S, TS). Entonces: 
+**Usuario puede ver el objeto si //~ClasificaciónDelSujeto// es mayor o igual a //~ClasificaciónDelObjeto//.
+**Usuario puede modificar el objeto si //~ClasificaciónDelSujeto//=//~ClasificaciónDelObjeto//.
+!Gestión de usuarios
+La interfaz en ~MySql para la gestión de usuarios está formada por las instrucciones: 
+CREATE USER, GRANT, REVOKE. Internamente el servidor almacena la información en el esquema //mysql//. 
+La identidad viene determinada por el equipo desde el que se accede y por el nombre de usuario que se especifique y los privilegios de cada identidad se indican en el esquema //mysql//. Estamos ante un caso de control de acceso discrecional.
+Para averiguar los privilegios de una identidad se puede utilizar:
+
+```
+show grants for 'usuario'@'equipo'
+```
+
+El control de acceso de ~MySql funciona en dos pasos:
+
+*Paso 1: Verificación de identidad mediante autenticación antes de conceder una conexión
+*Paso 2: Una vez iniciada la sesión, ante cada sentencia que desee ejecutar la identidad el sistema verifica que dispone de los privelegios pertinentes. 
+&gt;Ejemplo:
+&gt;ver privilegios de 'phpmyadmin'@'localhost' en mysql. Primero vía show grants y después accediendo a la bbdd //mysql//.
+En la sección 5.4 del manual se encuentra toda la explicación del mecanismo de control de acceso. 
+Las tablas más importantes son: 
+
+*//user//: contiene las cuentas de usuario (o identidades), privilegios globales que refieren a todas las bbdd del sistema.
+*//db//: indica privilegios de cada identidad sobre cada una de las bbdd. 
+*//table_priv// y //column_priv//: lo mismo que //db// pero en este caso refieriéndose a las tablas  y a columnas respectivamente.
+;Nombres de una cuenta de usuario o identidad
+Las reglas básicas para la creación de nombres son:
+
+*Sintaxis para una identidad: 'nombre_usuario'@'nombre_equipo'
+*Los comilla son necesarias en el nombre de usuario o de equipo cuando contienen algún carácter especial como '-' o %.
+*Una identidad que sólo dispone de un nombre de usuario equivale a 'nombre_de_usuario'@'%'.
+*Los metacaracteres % y _ colocados como parte del nombre_equipo tienen el mismo significado que en una comparación de literales utilizando LIKE.
+*Se puede crear usuarios anónimos dejando el nombre_usuario como un espacio en blanco: ' '@'localhost'
+*El nombre_de_equipo se puede indicar con el nombre del equipo o con la IP. Es decir, 'localhost' y '127.0.0.1' son equivalentes.
+;Creación de usuarios y eliminación
+La sintaxis de la creación de usuarios es la siguiente (fuente manual):
+
+```
+CREATE USER user_specification [, user_specification] ...
+user_specification:
+user [IDENTIFIED BY [PASSWORD] 'password']
+```
+&gt;Ejemplo:
+&gt;CREATE USER pepe@192.168.0% IDENTIFIED BY '1234'
+Y para la eliminación
+
+```
+DROP USER user [,user]...
+```
+Si la eliminación se realiza mientras el usuario dispone de una sesión en el servidor, no tendrá efecto hasta que dicha sesión no finalice.
+
+;Concesión de privilegios
+Para la gestión de privilegios tenemos la sentencia GRANT. Veámosla:
+
+```
+GRANT priv_type [(column_list)][, priv_type [(column_list)]] ...
+ON [object_type] priv_level
+TO user_specification [, user_specification] ...
+[REQUIRE {NONE | ssl_option [[AND] ssl_option] ...}]
+[WITH with_option ...]
+
+object_type: TABLE | FUNCTION | PROCEDURE
+
+priv_level: *.* | db_name.* | db_name.tbl_name | tbl_name | db_name.routine_name
+
+user_specification: user [IDENTIFIED BY [PASSWORD] 'password']
+
+ssl_option: SSL | X509 | CIPHER 'cipher' | ISSUER 'issuer' | SUBJECT 'subject'
+
+with_option: GRANT OPTION | MAX_QUERIES_PER_HOUR count | MAX_UPDATES_PER_HOUR count | MAX_CONNECTIONS_PER_HOUR count
+| MAX_USER_CONNECTIONS count
+```
+
+Comentarios importantes:
+
+*Para poder usar GRANT se debe disponer del privilegio GRANT OPTION.
+*Hay que acudir al manual (sección 12.7) para averiguar qué privilegios soporta ~MySql. Los más importantes se pueden dividir en:
+**Privilegios globales (almacenados en //mysql.user//): CREATE USER, FILE, PROCESS, RELOAD, REPLICATION CLIENT, REPLICATION SLAVE, SHOW DATABASES, SHUTDOWN.
+**Privilegios de bbdd (en //mysql.db//): CREATE, DROP, EVENT, GRANT OPTION, LOCK TABLES
+**Privilegios de tabla: ALTER, CREATE VIEW, CREATE, DELETE, DROP, GRANT OPTION, INDEX, INSERT, SELECT, SHOW VIEW, TRIGGER, UPDATE.
+**Privilegios de columna: INSERT, SELECT y UPDATE.
+*La cláusula WITH se utiliza para:
+**Permitir a un usuario dar privilegios a otro (siempre y cuando el primero los tenga, claro).
+**Limitar el uso de los recursos del servidor: limitando número de consultas, modificaciones, conexiones,etc.
+*La cláusula REQUIRE se utiliza para exigir diferentes modelos de seguridad en la conexión. No entrará en este curso.
+;Revocación de privilegios
+
+```
+REVOKE priv_type [(column_list)] [, priv_type [(column_list)]] ...
+ON [object_type] priv_level
+FROM user [, user] ...
+```
+O también:
+
+```
+REVOKE ALL PRIVILEGES, GRANT OPTION
+FROM user [, user] ...
+```
+
+Otras instrucciones interesantes: RENAME USER, SET PASSWORD. La primera para cambiar el nombre de un usuario y, la segunda, para cambiar la contraseña..
+</pre>
+</div>
+<div created="20141014230516054" modified="20141014230622034" title="Índice">
+<pre>&lt;&lt;list-links &quot;[tag[Índice]]&quot;&gt;&gt;</pre>
+</div>
+<div created="20141014231039517" modified="20141014231047982" title="La LOPD">
+<pre>Vista en M11</pre>
+</div>
+<div created="20141014230728474" modified="20141014232016160" tags="Índice" title="Seguridad de la Información">
+<pre>*[[The big three CIA]]
+*[[La LOPD]]
+*[[DCL en MySql]]</pre>
+</div>
+<div created="20141014230918370" modified="20141014231011870" title="The big three CIA">
+<pre>!Seguridad de la información
+Vivimos en la sociedad de la información. Cualquier persona puede saber muchas cosas de otra. 
+La información es un valor. Toda empresa que posea información sobre un conjunto de clientes tiene un bien que debe aprovechar.
+Los tres principios básicos que garantizan la seguridad de un sistema son: confidencialidad, integridad y disponibillidad. //The big three CIA//
+
+!!!Principio de integridad
+Garantiza:
+
+*Los datos no son alterados
+*Conservan su consistencia en todo momento
+¿Cómo?
+
+*Principio de integridad de entidades: no puede existir entidades que permitan valores nulos en su campo clave.
+*Principio de integridad referencial: una clave foránea no puede dejar de apuntar al campo clave asociado
+&lt;&lt;&lt;
+Situación típica en que se incumple la integridad referencial:
+Cuando se elimina/modifica un campo que es referenciado.
+¿Cuál es la solución?
+&lt;&lt;&lt;
+
+*Principio de integridad semántica: hay ciertos predicados, o locuciones lógicas diseñadas por el administrador de la bbdd (dba) que siempre deben ser respetadas. Por ejemplo: una fecha de devolución será posterior a la de alquiler, un número de pedidos será menor al número máximo de unidades que queden en el almacén.
+&lt;&lt;&lt;
+¿Cómo puede un dba asegurar que se cumple la integridad semántica?
+&lt;&lt;&lt;
+
+Dentro del principio de integridad también se debe considerar las transacciones. ¿Qué pasa con una operación que incluye varios pasos?
+¿Cuáles son las propiedades que deben regir la gestión de dichas operaciones? ACID
+
+!!!Principio de disponibilidad
+Garantiza:
+
+*Datos accesibles
+*Aplicaciones activas
+Ambas cosas en todo momento y situación (catástrofe)
+¿Cómo?
+
+*Balanceo de carga para solventar el problema del colapso de la red.
+*SAI para solventar el problema de la alimentación energética interrumpida.
+*Planes de recuperación: 'Pepe, ¿cómo salimos de ésta?' Suelen incluir copias de seguridad, replicación en bbdd, clústers de servidores, etc.
+!!!Principio de confidencialidad
+Garantiza:
+*Ninguna persona no autorizada tiene acceso a los datos.
+¿Cómo?
+
+*Sistemas de control de acceso. Autenticar y autorizar.
+*Cifrado de la información cuando ésta viaja por canales poco seguros.
+</pre>
 </div>
 
 </div>
