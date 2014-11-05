@@ -119,6 +119,8 @@ Error message and password prompt
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/close-all</li>
 
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/close-others</li>
+
 <li>$:/core</li>
 
 <li>$:/DefaultTiddlers</li>
@@ -145,21 +147,37 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
+<li>01_Actividades DCL en MySql</li>
+
+<li>01_Seguridad de la Información</li>
+
+<li>02_Actividades sobre copias y restauración en MySql</li>
+
+<li>02_Salvaguarda y recuperación de la Información</li>
+
 <li>Actividades</li>
 
-<li>Actividades DCL en MySql</li>
+<li>Conceptos de seguridad y recuperación</li>
 
 <li>Contenido</li>
 
+<li>Copias y recuperación en MySql</li>
+
 <li>DCL en MySql</li>
+
+<li>Draft of 'Actividades'</li>
 
 <li>Índice</li>
 
 <li>La LOPD</li>
 
-<li>Seguridad de la Información</li>
+<li>Planificación</li>
 
 <li>The big three CIA</li>
+
+<li>Tipos de copias</li>
+
+<li>Tipos de soportes</li>
 
 </ul>
 </p>
@@ -172,6 +190,9 @@ Error message and password prompt
 
 <div id="storeArea" style="display:none;">
 <div modified="20141014233225970" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/close-all">
+<pre>show</pre>
+</div>
+<div modified="20141105091557858" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/close-others">
 <pre>show</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core plugin" list="readme" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.2">
@@ -4721,13 +4742,13 @@ Error message and password prompt
 <div modified="20141014230919905" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div modified="20141014233211799" title="$:/state/sidebar">
-<pre>yes</pre>
+<div modified="20141105092326709" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
-<div modified="20141014233216427" title="$:/state/tab/sidebar--1835078512">
-<pre>$:/core/ui/SideBar/Tools</pre>
+<div modified="20141105092125898" title="$:/state/tab/sidebar--1835078512">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div list="" title="$:/StoryList">
+<div list="[[02_Actividades sobre copias y restauración en MySql]] [[Draft of 'Actividades']] [[01_Actividades DCL en MySql]] Contenido [[01_Seguridad de la Información]] [[02_Salvaguarda y recuperación de la Información]] [[Copias y recuperación en MySql]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -4816,10 +4837,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20141014232025643" modified="20141014233137524" tags="Índice" title="Actividades">
-<pre>&lt;&lt;list-links &quot;[tag[Actividades]]&quot;&gt;&gt;</pre>
-</div>
-<div created="20141014232043839" modified="20141014232844599" tags="Actividades" title="Actividades DCL en MySql">
+<div created="20141014232043839" modified="20141105092948959" tags="Actividades" title="01_Actividades DCL en MySql">
 <pre>!Actividad_1
 Recordatorio. Monta una bbdd con dos tablas una de compras y otra de productos. Establece alguna referencia de la una a la otra y algún tipo de principio semántico. ¿Cómo consigues cumplir con CIA?  
 
@@ -4840,8 +4858,105 @@ Recuperar contraseña de root en ~MySql:
 !Actividad_4:Metadatos_MySql
 *Averigua el número de filas que tiene cada tabla de la base de datos 'mysql' sin acceder a la base de datos (utilizando el //information_schema//)</pre>
 </div>
+<div created="20141014230728474" modified="20141105092217976" tags="Contenido" title="01_Seguridad de la Información">
+<pre>*[[The big three CIA]]
+*[[La LOPD]]
+*[[DCL en MySql]]</pre>
+</div>
+<div created="20141105092254586" modified="20141105093001419" tags="Actividades" title="02_Actividades sobre copias y restauración en MySql">
+<pre>!!Actividad_Mysql_1
+*Crea una base de datos. Llámala 'copias'. Añádele un par de tablas ~MySam. Inserta algunos datos.
+*Activa el archivo de log de cambios.
+*Realiza una copia completa de la base de datos utilizando mysqldump.
+*Realiza alguna inserción más en la bbdd.
+*Supón que se produce una caída del sistema. ¿Cómo restauramos la base de datos? //Ayuda: hay que restaurar primero la copia completa y, a continuación, restaurar los cambios realizados sobre la bbdd despues de realizar la copia completa//
+
+!!Actividad_Mysql_2
+Busca información sobre Enterprise Product de ~MySql. ¿Qué ofrece?
+
+!!Actividad_MySql_3
+Realiza una copia física de la bbdd 'copias'. Envíasela a tu compañero. 
+Restaura la copia que te haya pasado tu compañero.
+¿Qué archivos has tenido que copiar?¿Qué problemas te has encontrado?
+
+!!Actividad_MySql_4
+Realiza una copia lógica de la bbdd 'copias' dando formato a los datos de tal manera que luego se puedan cargar desde googleDocs o ~LibreOffice. ¿Se puede conseguir?¿Qué problemas tienes?
+
+!!Actividad_MySql_5: Ampliación
+Escribe un script de shell que realice una copia de la base de datos y la envíe a un servidor ftp.</pre>
+</div>
+<div created="20141105002316915" modified="20141105092202322" tags="Contenido" title="02_Salvaguarda y recuperación de la Información">
+<pre>*[[Conceptos de seguridad y recuperación]]
+*[[Planificación]]
+*[[Tipos de soportes]]
+*[[Tipos de copias]]
+*[[Copias y recuperación en MySql]]</pre>
+</div>
+<div created="20141014232025643" modified="20141014233137524" tags="Índice" title="Actividades">
+<pre>&lt;&lt;list-links &quot;[tag[Actividades]]&quot;&gt;&gt;</pre>
+</div>
+<div created="20141105085204443" modified="20141105085210391" title="Conceptos de seguridad y recuperación">
+<pre>;Seguridad
+:En este contexto, seguridad significa no perder los datos bajo ningún concepto. Todo proyecto informático debe constar de una planificación de medidas preventivas que eviten la pérdida de datos. Dentro de esta planificación se considerará: cuándo se realizarán las copias de seguridad, soportes de las copias, mantenimiento físico de dichos soportes, realización de auditorías, etc.
+;Recuperación
+:La recuperación define el proceso mediante el cual un base de datos almacenada en una copia de seguridad vuelve a estar operativa. La recuperación de datos va, lógicamente, estrechamente ligada a la seguridad de los mismos ya que se trata del proceso inverso.</pre>
+</div>
 <div created="20141014230624953" modified="20141014230726252" tags="Índice" title="Contenido">
 <pre>&lt;&lt;list-links &quot;[tag[Contenido]]&quot;&gt;&gt;</pre>
+</div>
+<div created="20141105085813796" modified="20141105092142938" title="Copias y recuperación en MySql">
+<pre>!Tipos de copias
+*Copias lógicas. Scripts de sql. Bbdd (o partes de) reducidas. Se obtienen solicitando al servidor la estructura de la base de datos. Gran portabilidad. Siempre en caliente. La salida (output) es larga y poco compacta. Pueden ser copias iniciadas local o remotamente.
+*Copias físicas: una reproducción exacta del directorio donde ~MySql alberga los datos. Más rápidas, más compactas. Pueden incluir archivos de configuración o de monitorización (log). Solo trasladables a equipos con mismo hardware o similar. Pueden hacerse en frío o en caliente. Si se realizan en caliente, requieren bloquear las partes que van a ser copiadas. Copias locales, no existe posibilidad de hacerlo remotamente.
+*Herramientas:
+**Copias lógicas: mysqldump. SELECT .... INTO OUTFILE (para cualquier motor)
+**Copias físicas: depende del motor. Para Innodb tenemos mysqlbackup, para ~MySam tenemos mysqlhotcopy. También existe ~MySql Enterprise Backup, herramienta para grandes bbdd (~MySql Enterprise)
+*Las copias pueden ser totales o incrementales. Para habilitar la posibilidad de copias incrementales se debe activar el //binary log// del servidor que es donde ~MySql guardará los cambios.
+!Metodos posibles
+#Usando Enterprise Backup Product. Pagando.
+#Usando mysqldump: cualquier motor (con ~InnoDB hay que utilizar //single-transaccion//). Copias lógicas
+#Usando mysqlhotcopy: solo para mysam. Copias físicas.
+#Copiando los ficheros directamente: motores que guarden sus tablas en ficheros concretos. Por ejemplo, en mysam, simplemente copiando  los (*.frm, *.MYD, *.MYI) y usando la instrucción //FLUSH TABLES WITH READ LOCK// (esto es precisamente lo que realiza myslqhotcopy)
+#Creando un fichero de texto con formate que contenga los datos usando //SELECT * INTO OUTFILE 'nombre_archivo' FROM tablas//;
+#Copias incrementales activando el //binary-log//.
+#Utilizando replicación maestro-esclavo. para realizar los backups.
+#Utilizando otras herramientas para &quot;fotografíar&quot; el sistema de archivos (snapshot). Se debe hacer un FLUSH previo siempre.
+!Ejemplo utilizando mysqldump
+*Tenemos una bbdd con ~InnoDB.
+*Copia total inicial:
+&gt;`mysqldump --single-transaction --all-databases &gt;backup1.sql`  (la opción single-transaction realiza lecturas consistentes de la bbdd y garantiza que no hay cambios en los datos)
+*Lógicamente no siempre nos interesa realizar copias totales. Para activar las copias incrementales:
+&gt;Activamos `--bin-log` en el archivo de configuración. Indicamos una ruta.
+*Se irán guardando los cambios en un archivo estilo //nombre_archivo_numero.bin//
+*Cada vez que se reinicia el servidor creará un nuevo archivo incrementado el &quot;numero&quot; del nombre.
+*Podemos obligar al servidor a rotar y crear un nuevo archivo de cambios utilizando FLUSH LOGS.
+*La instrucción anterior la reescribimos:
+&gt;`mysqldump --single-transaction --flush-logs --master-data=2 --all-databases &gt; backup1.sql` (la opción master-data obliga a mysqldump a incluir en el archivo de .sql información sobre cuál es el numero del archivo de log de cambios en el momento de realizar la copia).
+*Supongamos que pasados unos días queremos restaurar el sistema ¿Cómo realizamos la restauración?
+**Primero, la copia total: `mysql&lt;backup1.sql`
+**Pero desde el momento de realizar la copia hasta el momento actual se han realizado cambios que hay que restaurar. Acudimos a los logs de cambios: `mysqlbinlog archivo_log_numero1.bin archivo_log_numero2.bin | mysql`
+!Más opciones de mysqldump
+*Mysqldump produce dos tipos de salida en función de si añadimos `--tab` o no.
+**Sin `--tab`: produce un archivo .sql con todos los CREATE y los INSERT  de la bbdd.
+**Con `--tab`: produce dos archivos de salida. Uno .sql con los CREATE y otro .txt con los datos de las tablas (una linea por fila).
+*Si añadimos `--databases`, las instrucciones CREATE DATABASE y USE aparecerán en el resultado. Se puede usar también `--add-drop-databases` en cuyo caso mysqldump añadirá la instrucción DROP DATABASE antes de crearla para evitar errores.
+*Para volcar sólo un conjunto de tablas `myslqdump bbdd tabla1 tabla2 &gt; nombre_copia.sql`
+*Para recuperar: `mysql &lt; archivo.sql` o con SOURCE
+*Para volcar datos con formato: `myslqdump --tab=nombre_directorio nombre_bbdd`. Creará dos archivos por tabla: uno con el CREATE y otro con los datos. Requiere permisos de FILE. (Atención: el .txt se crea en función de los permisos que tenga el servidor mysql, el .sql se crea con los permisos del usuario que ejecuta mysqldump). Utiliza el SELECT...INTO OUTFILE. Los datos de cada campo de la tabla se separan con espacios en blanco y el retorno de carro es el final de fila.
+*Se puede dar formato diferentes a los datos volcados por mysqldump {{{--}}}tab. Se puede utilizar: `--fields-terminated-by, --fields-enclosed-by, --fields-optionally-enclosed-by, --fields-escape-by, --lines-terminated-by`.
+&lt;&lt;&lt;
+Ejemplo: volcar datos de las tablas con los campos separados por comas y finales de fila con retorno de carro
+`mysqldump --tab=/tmp --fields-terminated-by=, --lines-terminated-by=0x0d0a1 bbdd`
+&lt;&lt;&lt;
+*Para recuperar datos de los dos archivos:
+**Desde el archivo .sql está claro.
+**Para cargar datos desde .txt: LOAD DATA INFILE 'nombre_archivo.txt' INTO TABLE nombre_tabla; 
+**También se puede utilizar la utilidad mysqlimport: `mysqlimport bbdd nombre_archivo.txt`
+*Más opciones de mysqldump:
+**//no-data//: para no volcar datos.
+**//no-create-info//: para solo volcar comandos CREATE.
+**//routines//: para incluir rutinas
+**//skip-routines//: para no incluir rutinas.</pre>
 </div>
 <div created="20141014231138417" modified="20141014232003772" title="DCL en MySql">
 <pre>!Mecanismos de seguridad básicos en un SGBD
@@ -4967,16 +5082,38 @@ FROM user [, user] ...
 Otras instrucciones interesantes: RENAME USER, SET PASSWORD. La primera para cambiar el nombre de un usuario y, la segunda, para cambiar la contraseña..
 </pre>
 </div>
+<div created="20141014232025643" draft.of="Actividades" draft.title="Actividades" modified="20141105092936304" tags="Índice" title="Draft of 'Actividades'">
+<pre>&lt;&lt;list-links &quot;[tag[Actividades]]&quot;&gt;&gt;</pre>
+</div>
 <div created="20141014230516054" modified="20141014230622034" title="Índice">
 <pre>&lt;&lt;list-links &quot;[tag[Índice]]&quot;&gt;&gt;</pre>
 </div>
 <div created="20141014231039517" modified="20141014231047982" title="La LOPD">
 <pre>Vista en M11</pre>
 </div>
-<div created="20141014230728474" modified="20141014233206260" tags="Contenido" title="Seguridad de la Información">
-<pre>*[[The big three CIA]]
-*[[La LOPD]]
-*[[DCL en MySql]]</pre>
+<div created="20141105085241485" modified="20141105085328406" title="Planificación">
+<pre>*Todo proyecto de desarrollo informático requiere durante su etapa de diseño de un plan de contingencia que implemente unas políticas de seguridad. Este plan deberá indicar:
+**Qué partes del proyecto se debe almacenar.
+**Cuándo se llevará acabo el proceso de seguridad y cuándo se repetirá.
+**Dónde se guardarán las copias y qué soporte se utilizará.
+**Cómo se llevará acabo la recuperación de los datos. Qué pasos habrá que seguir.
+*La RLOPD (Reglamento de la Ley Orgánica de Protección de Datos) obliga a documentar todos los procedimientos en que se describan los procesos de copias de seguridad y recuperación de los datos. De hecho, la ley establece que cada seis meses el responsable de los datos verifique la definición, el funcionamiento y aplicación de los procesos de seguridad y recuperación de datos.
+!!!Aspectos más relevantes de un plan completo de seguridad de datos
+*''Volumen de la información'': para poder escoger adecuadamente el soporte, la periodicidad y el tiempo que conllevará el proceso de copia. De hecho, normalmente, se habrán de suponer volúmenes de información posibles y trabajar con un rango de valores.
+*''Tipos de copias de seguridad'': completas, incrementales, diferenciales, etc. Dependerá del volumen y de si se trata de datos sensibles o no.
+*''Soporte físico de las copias y su ubicación'': dependerá del tiempo de vida estimado de la información, de la accesibilidad que se requiera para las copias, condiciones ambientales y seguridad física de la ubicación, etc.
+*''Tipo de información que se desea almacenar'': dependiendo de la importancia de los datos y su clasificación puede ser necesario plantearse procedimientos de encriptación u otras técnicas que incrementen el control de accesos a la información.
+*''Duración de las copias'': según el volumen y el tipo de datos el plan de seguridad deberá estimar la duración de las copias y el marco horario más conveniente para realizar las copias.
+*''Responsables o responsables de las copias'': personas que certifican que el procedimiento de copia o seguridad se ha realizado correctamente.
+*''Formación de los usuarios de las copias'': si es necesario se tendrá que establecer qué conocimientos y cuándo los recibirán los usuarios o técnicos encargados o relacionados con el proceso de copia.
+*''Verificación de las copias'': habrá que revisar de forma periódica que las copias se realizan adecuadamente.
+Otro tipo de acciones que se pueden considerar:
+
+*Instalación de un antivirus.
+*Actualizaciones del software y/o SO involucrados.
+*Instalación de un cortafuegos.
+*Utilizar un SAI
+*Prevención de riesgos físicos: evitar fuentes de campos magnéticos, de calor excesivo, frío, humedad, etc.</pre>
 </div>
 <div created="20141014230918370" modified="20141014231011870" title="The big three CIA">
 <pre>!Seguridad de la información
@@ -5026,6 +5163,38 @@ Garantiza:
 *Sistemas de control de acceso. Autenticar y autorizar.
 *Cifrado de la información cuando ésta viaja por canales poco seguros.
 </pre>
+</div>
+<div created="20141105085518266" modified="20141105085653070" title="Tipos de copias">
+<pre>*Copias de seguridad del sistema.
+**También llamadas //backups//, copias de respaldo, copias de soporte
+**Tienen por objetivo disponer de los elementos necesarios para poder restablecer el sistema en caso de fallo del mismo o de pérdida o modificación errónea de los datos.
+*Copias en función de la cantidad de información acumulada
+**Copias completas
+**Copias parciales. Dentro de estas podemos distinguir:
+***Incrementales: copian únicamente los ficheros modificados/creados desde la última copia incremental realizada.
+***Diferenciales: copian los ficheros modificados/creados desde la última copia completa realizada.
+*Copias encriptadas/desencriptadas. Dependiendo de si los datos son sensibles o no. La LOPT obliga a encriptar los datos de nivel alto.
+*Copias de seguridad en función de los métodos de rotación de las copias de seguridad.
+**Son métodos que permiten tener más de una copia de seguridad del origen.
+**Permiten elegir qué copia se desea restaurar de entre un conjunto de copias.
+**Por ejemplo: copias de rotación semanal: se realiza una copia completa cada semana y copias incrementales cada día de la semana.</pre>
+</div>
+<div created="20141105085355393" modified="20141105085453097" title="Tipos de soportes">
+<pre>*Discos duros: ofrecen almacenamiento no volátil, altas capacidades de almacenamiento, velocidad de acceso alta, presumiblemente los datos funcionales se encontrarán en estos soportes lo que puede ser una ventaja. (IDE, SATA, SCSI, Serial Attached SCSI, etc)
+*Discos compactos: Limitados en capacidad, frágiles (ralladuras, golpes, roturas). CD(700MB)/DVD(4G)/~Blue-Ray (25G)
+*Cintas magnéticas: Grandes velocidades de acceso. Problemas de mantenimiento. (Casetes, Cintas de vídeo)
+*Discos duros externos: menor capacidad que los discos rígidos, caros, conexión en caliente.
+*Flash o USB: fácil transporte, poca capacidad, posibilidad de perderse fácilmente.
+*Red de área de almacenamiento (SAN): se trata de una red de preparada para el almacenamiento a base de interconectar discos duros. Tienen una alta escalabilidad (capacidad casi ilimitada). Su velocidad depende de la tecnología de red utilizada. Es cara pero de alta fiabilidad.
+*RAID: (Redundant array of indepent disks): conjunto redundante de discos independientes. Sistema que permite el almacenamiento de datos de forma replicada. Permite una alta tolerancia a fallos, mayor velocidad de acceso y una integridad superior de los datos.
+!!Localización de los soportes
+Existen diferentes estrategias. Escoger una u otra dependerá de la finalidad de las copias. Por ejemplo, en un entorno de producción puede ser interesante optar por una localización distribuida, en cambio, en un sistema de seguridad es preferible un sistema centralizado. Veamos:
+
+*''Sistema centralizado'': consiste en disponer de un servidor (Server free) dedicado explícitamente a almacenar las copias. Normalmente dispondrá de una LAN dedicada para ofrecer el servicio. Otra opción parecida (LAN free) es disponer una red SAN completamente independiente de la LAN habitual con lo que se evita el colapso de la red.
+*''Replicación'': las técnicas de replicación son cada vez más habituales. Ofrecen alta disponibilidad a bajo coste y una buena seguridad de datos. La replicación consiste en copiar datos de una ubicación física a otra por bloques o de forma diferencial y, normalmente, de forma automatizada. Hay diferentes formas de aplicar la replicación:
+**''Replicación síncrona'': permite tener los datos continuamente actualizados en el sistema destino. Problema: carga el sistema origen y no puede haber grandes distancias entre origen y destino.
+**''Replicación asíncrona'': los datos no se mantienen continuamente actualizados en el destino. Las sincronizaciones se realizan en momentos de baja demanda. 
+*''Desduplicación'': técnica de replicación evolucionada. Consiste en detectar prevíamente elementos de datos que se encuentran por duplicado en la copia y no replicarlos sino enlazarlos. Es decir, elimina la redundancia de información. Reduce considerablemente el espacio necesario de almacenamiento.</pre>
 </div>
 
 </div>
