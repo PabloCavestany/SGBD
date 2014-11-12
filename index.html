@@ -155,6 +155,8 @@ Error message and password prompt
 
 <li>02_Salvaguarda y recuperación de la Información</li>
 
+<li>03_Actividades sobre logs en MySql</li>
+
 <li>Actividades</li>
 
 <li>Conceptos de seguridad y recuperación</li>
@@ -168,6 +170,8 @@ Error message and password prompt
 <li>Índice</li>
 
 <li>La LOPD</li>
+
+<li>Logs en MySql</li>
 
 <li>Planificación</li>
 
@@ -4740,13 +4744,13 @@ Error message and password prompt
 <div modified="20141014230919905" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div modified="20141105093327477" title="$:/state/sidebar">
-<pre>yes</pre>
+<div modified="20141112102049751" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
 <div modified="20141105092125898" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div list="Índice Actividades" title="$:/StoryList">
+<div list="[[03_Actividades sobre logs en MySql]] Índice Contenido [[02_Salvaguarda y recuperación de la Información]] [[Logs en MySql]] Actividades [[02_Actividades sobre copias y restauración en MySql]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -4883,15 +4887,33 @@ Realiza una copia lógica de la bbdd 'copias' dando formato a los datos de tal m
 !!Actividad_MySql_5: Ampliación
 Escribe un script de shell que realice una copia de la base de datos y la envíe a un servidor ftp.</pre>
 </div>
-<div created="20141105002316915" modified="20141105092202322" tags="Contenido" title="02_Salvaguarda y recuperación de la Información">
+<div created="20141105002316915" modified="20141112101745222" tags="Contenido" title="02_Salvaguarda y recuperación de la Información">
 <pre>*[[Conceptos de seguridad y recuperación]]
 *[[Planificación]]
 *[[Tipos de soportes]]
 *[[Tipos de copias]]
-*[[Copias y recuperación en MySql]]</pre>
+*[[Copias y recuperación en MySql]]
+*[[Logs en MySql]]</pre>
 </div>
-<div created="20141014232025643" modified="20141014233137524" tags="Índice" title="Actividades">
-<pre>&lt;&lt;list-links &quot;[tag[Actividades]]&quot;&gt;&gt;</pre>
+<div created="20141112102013637" modified="20141112102537389" tags="Actividades" title="03_Actividades sobre logs en MySql">
+<pre>
+#Activa en //my.cnf// el registro de consultas lentas, configuralo para que registre cualquier consulta que dure más de un segundo en resolverse, a continuación (puedes utilizar la función `BENCHMARK(...)`) realiza alguna consulta lenta y comprueba que queda registrada.
+#Activa el registro general de consultas. En está ocasión vas a utilizar una tabla como salida del registro. Es decir, las sentencias no quedarán registradas en un archivo sino en una tabla que colgará de la bbdd //mysql//. Una forma de conseguirlo es cambiando la variable global `log-output=TABLE` ([[manual|http://dev.mysql.com/doc/refman/5.5/en/server-system-variables.html#sysvar_log_output]])
+#Documenta cómo se consigue tener dos instancias de ~MySqld en la misma máquina. (Capítulo 5.3 del manual). ¿Qué pasa con los logs de cada una de las instancias? </pre>
+</div>
+<div created="20141014232025643" modified="20141112102951208" tags="Índice" title="Actividades">
+<pre>''Proyectos básicos''
+
+&lt;&lt;&lt;
+*[[01_Actividades DCL en MySql]]
+*[[02_Actividades sobre copias y restauración en MySql]]
+&lt;&lt;&lt;
+''Proyectos no básicos''
+
+&lt;&lt;&lt;
+*[[03_Actividades sobre logs en MySql]]
+&lt;&lt;&lt;
+</pre>
 </div>
 <div created="20141105085204443" modified="20141105085210391" title="Conceptos de seguridad y recuperación">
 <pre>;Seguridad
@@ -5085,6 +5107,20 @@ Otras instrucciones interesantes: RENAME USER, SET PASSWORD. La primera para cam
 </div>
 <div created="20141014231039517" modified="20141014231047982" title="La LOPD">
 <pre>Vista en M11</pre>
+</div>
+<div created="20141112101751600" modified="20141112101945929" title="Logs en MySql">
+<pre>|!Tipo de Log|!Descripcion|
+|Error Log|Problemas con inicio, puesta en marcha y parada del servidor|
+|General Query Log|Registra conexiones de clientes y comandos enviados por los mismos|
+|Binary Log|Registro de sentencias que modifican datos DML (Usado en replicación y copias incrementales)|
+|Relay Log|Registro de cambios recibidos desde el servidor maestro (para replicación)|
+|Slow query Log|Registro de consultas lentas|
+*Por defecto:
+**Los Logs no están habilitados.
+**Los crea en el directorio de datos.
+*Se puede obligar al servidor a reiniciar los registros con el comando `FLUSH LOGS` o con `mysqladmin flush-logs` o, cuando hacemos una copia lógica con `myslqdump --flush-logs` o `mysqldump --master-data`
+*El //binary log// se vuelca cuando llega al máximo indicado en //max-binlog-size//
+</pre>
 </div>
 <div created="20141105085241485" modified="20141105085328406" title="Planificación">
 <pre>*Todo proyecto de desarrollo informático requiere durante su etapa de diseño de un plan de contingencia que implemente unas políticas de seguridad. Este plan deberá indicar:
