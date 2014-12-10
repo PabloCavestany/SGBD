@@ -157,7 +157,7 @@ Error message and password prompt
 
 <li>03_Actividades sobre logs en MySql</li>
 
-<li>03_Replicación en MySql</li>
+<li>03_Trabajo final del módulo 2</li>
 
 <li>Actividades</li>
 
@@ -176,6 +176,8 @@ Error message and password prompt
 <li>Logs en MySql</li>
 
 <li>Planificación</li>
+
+<li>Replicación en MySql</li>
 
 <li>The big three CIA</li>
 
@@ -4746,13 +4748,13 @@ Error message and password prompt
 <div modified="20141014230919905" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div modified="20141112102049751" title="$:/state/sidebar">
+<div modified="20141209233508985" title="$:/state/sidebar">
 <pre>no</pre>
 </div>
 <div modified="20141105092125898" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div list="Índice Actividades" title="$:/StoryList">
+<div list="Índice [[02_Salvaguarda y recuperación de la Información]] Actividades [[03_Trabajo final del módulo 2]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -4889,103 +4891,77 @@ Realiza una copia lógica de la bbdd 'copias' dando formato a los datos de tal m
 !!Actividad_MySql_5: Ampliación
 Escribe un script de shell que realice una copia de la base de datos y la envíe a un servidor ftp.</pre>
 </div>
-<div created="20141105002316915" modified="20141112101745222" tags="Contenido" title="02_Salvaguarda y recuperación de la Información">
+<div created="20141105002316915" modified="20141209233425997" tags="Contenido" title="02_Salvaguarda y recuperación de la Información">
 <pre>*[[Conceptos de seguridad y recuperación]]
 *[[Planificación]]
 *[[Tipos de soportes]]
 *[[Tipos de copias]]
 *[[Copias y recuperación en MySql]]
-*[[Logs en MySql]]</pre>
+*[[Logs en MySql]]
+*[[Replicación en MySql]]</pre>
 </div>
 <div created="20141112102013637" modified="20141112102537389" tags="Actividades" title="03_Actividades sobre logs en MySql">
 <pre>#Activa en //my.cnf// el registro de consultas lentas, configuralo para que registre cualquier consulta que dure más de un segundo en resolverse, a continuación (puedes utilizar la función `BENCHMARK(...)`) realiza alguna consulta lenta y comprueba que queda registrada.
 #Activa el registro general de consultas. En está ocasión vas a utilizar una tabla como salida del registro. Es decir, las sentencias no quedarán registradas en un archivo sino en una tabla que colgará de la bbdd //mysql//. Una forma de conseguirlo es cambiando la variable global `log-output=TABLE` ([[manual|http://dev.mysql.com/doc/refman/5.5/en/server-system-variables.html#sysvar_log_output]])
 #Documenta cómo se consigue tener dos instancias de ~MySqld en la misma máquina. (Capítulo 5.3 del manual). ¿Qué pasa con los logs de cada una de las instancias? </pre>
 </div>
-<div created="20141203000317677" modified="20141203001316675" title="03_Replicación en MySql">
-<pre>|!Nota: Esta actividad es introductoria a la replicación en ~MySql. El objetivo es familiarizarse con la configuración|
-*Permite la replicación de datos de un servidor maestro a uno o más servidores esclavos.
-*Por defecto, la sincronización es asíncrona: los esclavos no necesitan conexión continua. Esto contrasta con la replicación síncrona característica de ~MySql Cluster.
-*Se puede replicar todas las bases de datos, un conjunto o, incluso, un conjunto de tablas.
-!!Configuración
-*La replicación se basa en los registros de binary log. Los esclavos se encargan de controlar qué parte del registro han actualizado y cuál no. 
-*Hay muchas opciones de replicación. Comunes a todas ellas hay una serie de tareas:
-**Activar binary log y configurar el &quot;server ID&quot;.
-**Activar &quot;server ID&quot; en cada uno de los esclavos.
-**Opcionalmente se puede crear un usuario en el maestro para cada esclavo.
-**Hay que recordar a partir de qué momento comienza la replicación, es decir, localizar el registro binary log adecuado.
-**Hay que configurar al esclavo con las opciones de conexión al maestro adecuadas.
-**Algunos pasos requieren privilegios de SUPER.
-__Configuración del maestro__
+<div created="20141209233345792" modified="20141210000048923" title="03_Trabajo final del módulo 2">
+<pre>|!Este trabajo se puede realizar en parejas. La nota será sobre 20 y la pareja se la repartirá con los pesos que acuerden|
+Vamos a suponer que sois los administradores de un sistema gestor de base de datos basado en ~MySql en una empresa. La empresa controla la gestión de un hotel. Dicha empresa dispone de una base de datos que llamaremos BBDD del hotel. La estructura de la base de datos responde al siguiente esquema entidad-relación:
+[img[Hotel|hotel_amp.png]]
 
-*Habilitar binary log. Requiere reinicio.
-*Identificar el servidor mediante la directiva `server-id= &lt;número positivo&gt;`
-``
-[mysqld]
-log-bin=&lt;archivo de log&gt;
-server-id=1
-``
+El diagrama de casos de uso es:
+[img[casos_hotel|casos us.png]]
 
-*Hay que crear una cuenta de usuario con privilegio REPLICATION SLAVE para el esclavo. Se puede crear cuentas distintas para cada esclavo.
+La empresa confia en vosotros para:
 
-``
-CREATE USER 'replica@'%.asix.cat' IDENTIFIED BY 'slavepass';
-GRANT REPLICATION SLAVE ON *.* TO 'replica@'%.asix.cat';
-``
+*Garantizar la confidencialidad de los datos.
+*Garantizar la disponibilidad de los datos.
+*Garantizar la seguridad y protección de los datos considerando que los datos son de un nivel de seguridad básico según la catalogación realizada en la LOPD.
 
-*Para &quot;parar&quot; los cambios en el maestro y obtener una posición exacta en el binary log
-``
-FLUSH TABLES WITH READ LOCK;
---En otra sesión (la anterior se deja funcionando para mantener el bloqueo de tablas):
-SHOW MASTER STATUS;
---Nos devuelve posición y archivo del binary log en el que se ha quedado bloqueado el maestro
-``
+Además, con cierta periodicidad, la empresa elabora un informe que exige la manipulación estadística de algunos datos de la base de datos. Para facilitar el trabajo al departamento que realiza el informe, la empresa os pide el volcado de los datos de las tablas CLIENTE Y RESERVA en un formato que sea fácilmente exportable a una hoja de cálculo. 
 
-*Este sería un buen momento para hacer un volcado de la bbdd antes de empezar la replicación.
-``
-mysqldump --all-databases --master-data&gt;volcado.sql
---La opción master-data añade CHANGE MASTER TO al script sql.
-UNLOCK TABLES;
-``
+Por tanto, deberéis implementar:
 
-__Configuración del esclavo__
+*Política de control de accesos.
+*Sistema de copias de seguridad.
+*Volcado  periódico de datos con formato.
 
-*Configurar el identificador de servidor. Cada esclavo tendrá su identificador propio.
-*En principio no es necesario activar el binary log en el esclavo.
-``
-[mysqld]
-server-id=2
-``
+!!Política de control de accesos.
+Se debe garantizar que los únicos usuarios que acceden a la base de datos son los establecidos por la empresa. La empresa dispone de los siguientes usuarios:
 
-*La sentencia que permite establecer las opciones de la conexión maestro-esclavo es:
-``
-mysql&gt;CHANGE MASTER TO
-                    MASTER_HOST='nombre_de_la_maquina_del_maestro_o_IP',
-                    MASTER_USER='replica',
-                    MASTER_PASSWORD='slavepass',
-                    MASTER_LOG_FILE=&lt;nombre_archivo_binary_log&gt;,
-                    MASTER_LOG_POS=&lt;posición_en_el_archivo_binary&gt;
-mysql&gt;START SLAVE;
-``
+*''Administrador de la base de datos'': en principio, sois vosotros dos. Debéis de tener todos los privilegios en la base de datos y la posibilidad de acceso remoto.
+*''Administrador de datos'': usuarios que utilizan los diferentes aplicativos para realizar las modificaciones. Debe poder realizar consultas y modificar los datos que alberga la base de datos. 
+*''Usuarios que se desprenden de la lectura del diagrama de casos de uso''. Cada uno de ellos debe poder consultar/modificar las tablas que le correspondan.
 
-*Más opciones en [[manual|http://dev.mysql.com/doc/refman/5.5/en/change-master-to.html]].
-&lt;&lt;&lt;
-Por ejemplo, si queremos ceñir la replicación a sólo una base de datos de entre las que disponga el maestro para ser replicada, añadiremos en el archivo de configuración del esclavo:
-``replicate-wild-do-table=baseDeDatos.%``
-&lt;&lt;&lt;
-!!Chequeo
-Los comandos más usuales para chequear el estado de la replicación son: 
-`SHOW SLAVE STATUS`  en el esclavo y `SHOW PROCESSLIST \G`  en ambos equipos para ver la distribución del trabajo por procesos.
+!!Sistema de copias de seguridad
+Bajo ningún concepto el sistema debe de dejar de dar servicio. Hay que considerar además:
 
-*Muy interesante leer [[esto|http://dev.mysql.com/doc/refman/5.5/en/replication-administration.html]]</pre>
+*Pueden existir picos en el número de consultas bastante elevados. Se debe evitar que el sistema colapse.
+*Los datos de la base de datos se modifican con relativa frecuencia. En un día laboral pueden haber unas 200 instrucciones que modifiquen la base de datos. Debe quedar constancia de absolutamente todos los cambios que se produzcan y, además, el registro de los cambios debe estar ordenado por días. 
+
+!!Volcado de datos
+El volcado de datos debe hacerse en formato //csv//. Es decir, los campos separados por comas y los diferentes registros separados por retornos de carro.
+Convendría que estos volcados se pudiesen hacer remotamente y que el acceso a los mismos fuese relativamente sencillo por parte de las personas de la empresa que los requiera (mail, web,ftp,etc.).
+También podría considerarse el automatizar la tarea y que periódicamente y de forma automática se generaran los volcados y se enviarán a las personas que lo solicitasen y tuviesen permisos.
+
+__CONSIDERACIONES__
+
+*El trabajo se recomienda realizarlo en parejas. Como he dicho antes, la nota la pondré a la pareja y ella decidirá que porcentaje corresponde a cada uno de los integrantes de la pareja.
+*Se dispondrá de los siguientes días para realizar el trabajo: 10/12, 17/12, 14/01, 21/01, 28/01
+*La corrección &quot;visual&quot; del proyecto y entrega del trabajo se hará el día 28 del 01.
+*Se debe entregar:
+**Un pequeño documento explicando cómo se resuelven los problemas propuestos.
+**Documentación final: archivos de configuración comentados, scripts comentados, programas utilizados, bibliografía, posibles mejoras, etc. 
+*Todos los documentos se entregarán en pdf o html.</pre>
 </div>
-<div created="20141014232025643" modified="20141203001544559" tags="Índice" title="Actividades">
+<div created="20141014232025643" modified="20141209233503255" tags="Índice" title="Actividades">
 <pre>''Proyectos básicos''
 
 &lt;&lt;&lt;
 *[[01_Actividades DCL en MySql]]
 *[[02_Actividades sobre copias y restauración en MySql]]
-*[[03_Replicación en MySql]]
+*[[03_Trabajo final del módulo 2]]
 &lt;&lt;&lt;
 ''Proyectos no básicos''
 
@@ -5224,6 +5200,83 @@ Otro tipo de acciones que se pueden considerar:
 *Instalación de un cortafuegos.
 *Utilizar un SAI
 *Prevención de riesgos físicos: evitar fuentes de campos magnéticos, de calor excesivo, frío, humedad, etc.</pre>
+</div>
+<div created="20141203000317677" modified="20141209233448651" title="Replicación en MySql">
+<pre>|!Nota: Esta actividad es introductoria a la replicación en ~MySql. El objetivo es familiarizarse con la configuración|
+*Permite la replicación de datos de un servidor maestro a uno o más servidores esclavos.
+*Por defecto, la sincronización es asíncrona: los esclavos no necesitan conexión continua. Esto contrasta con la replicación síncrona característica de ~MySql Cluster.
+*Se puede replicar todas las bases de datos, un conjunto o, incluso, un conjunto de tablas.
+!!Configuración
+*La replicación se basa en los registros de binary log. Los esclavos se encargan de controlar qué parte del registro han actualizado y cuál no. 
+*Hay muchas opciones de replicación. Comunes a todas ellas hay una serie de tareas:
+**Activar binary log y configurar el &quot;server ID&quot;.
+**Activar &quot;server ID&quot; en cada uno de los esclavos.
+**Opcionalmente se puede crear un usuario en el maestro para cada esclavo.
+**Hay que recordar a partir de qué momento comienza la replicación, es decir, localizar el registro binary log adecuado.
+**Hay que configurar al esclavo con las opciones de conexión al maestro adecuadas.
+**Algunos pasos requieren privilegios de SUPER.
+__Configuración del maestro__
+
+*Habilitar binary log. Requiere reinicio.
+*Identificar el servidor mediante la directiva `server-id= &lt;número positivo&gt;`
+``
+[mysqld]
+log-bin=&lt;archivo de log&gt;
+server-id=1
+``
+
+*Hay que crear una cuenta de usuario con privilegio REPLICATION SLAVE para el esclavo. Se puede crear cuentas distintas para cada esclavo.
+
+``
+CREATE USER 'replica@'%.asix.cat' IDENTIFIED BY 'slavepass';
+GRANT REPLICATION SLAVE ON *.* TO 'replica@'%.asix.cat';
+``
+
+*Para &quot;parar&quot; los cambios en el maestro y obtener una posición exacta en el binary log
+``
+FLUSH TABLES WITH READ LOCK;
+--En otra sesión (la anterior se deja funcionando para mantener el bloqueo de tablas):
+SHOW MASTER STATUS;
+--Nos devuelve posición y archivo del binary log en el que se ha quedado bloqueado el maestro
+``
+
+*Este sería un buen momento para hacer un volcado de la bbdd antes de empezar la replicación.
+``
+mysqldump --all-databases --master-data&gt;volcado.sql
+--La opción master-data añade CHANGE MASTER TO al script sql.
+UNLOCK TABLES;
+``
+
+__Configuración del esclavo__
+
+*Configurar el identificador de servidor. Cada esclavo tendrá su identificador propio.
+*En principio no es necesario activar el binary log en el esclavo.
+``
+[mysqld]
+server-id=2
+``
+
+*La sentencia que permite establecer las opciones de la conexión maestro-esclavo es:
+``
+mysql&gt;CHANGE MASTER TO
+                    MASTER_HOST='nombre_de_la_maquina_del_maestro_o_IP',
+                    MASTER_USER='replica',
+                    MASTER_PASSWORD='slavepass',
+                    MASTER_LOG_FILE=&lt;nombre_archivo_binary_log&gt;,
+                    MASTER_LOG_POS=&lt;posición_en_el_archivo_binary&gt;
+mysql&gt;START SLAVE;
+``
+
+*Más opciones en [[manual|http://dev.mysql.com/doc/refman/5.5/en/change-master-to.html]].
+&lt;&lt;&lt;
+Por ejemplo, si queremos ceñir la replicación a sólo una base de datos de entre las que disponga el maestro para ser replicada, añadiremos en el archivo de configuración del esclavo:
+``replicate-wild-do-table=baseDeDatos.%``
+&lt;&lt;&lt;
+!!Chequeo
+Los comandos más usuales para chequear el estado de la replicación son: 
+`SHOW SLAVE STATUS`  en el esclavo y `SHOW PROCESSLIST \G`  en ambos equipos para ver la distribución del trabajo por procesos.
+
+*Muy interesante leer [[esto|http://dev.mysql.com/doc/refman/5.5/en/replication-administration.html]]</pre>
 </div>
 <div created="20141014230918370" modified="20141014231011870" title="The big three CIA">
 <pre>!Seguridad de la información
