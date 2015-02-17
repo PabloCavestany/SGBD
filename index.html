@@ -159,11 +159,15 @@ Error message and password prompt
 
 <li>03_Trabajo final del módulo 2</li>
 
-<li>Actividades</li>
+<li>Actividades M2 uf3</li>
+
+<li>Arquitectura de los sistemas gestores de bases de datos</li>
 
 <li>Conceptos de seguridad y recuperación</li>
 
-<li>Contenido</li>
+<li>Contenido M10 uf2</li>
+
+<li>Contenido M2 uf3</li>
 
 <li>Copias y recuperación en MySql</li>
 
@@ -174,6 +178,10 @@ Error message and password prompt
 <li>La LOPD</li>
 
 <li>Logs en MySql</li>
+
+<li>M10 uf2</li>
+
+<li>M2 uf3</li>
 
 <li>Planificación</li>
 
@@ -4748,13 +4756,13 @@ Error message and password prompt
 <div modified="20141014230919905" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div modified="20141209233508985" title="$:/state/sidebar">
+<div modified="20150217234427003" title="$:/state/sidebar">
 <pre>no</pre>
 </div>
 <div modified="20141105092125898" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div list="Índice [[02_Salvaguarda y recuperación de la Información]] Actividades [[03_Trabajo final del módulo 2]]" title="$:/StoryList">
+<div list="[[Contenido M10 uf2]] [[Arquitectura de los sistemas gestores de bases de datos]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -4771,7 +4779,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20141014230709174" modified="20141014233203484" title="$:/temp/NewTagName">
+<div created="20141014230709174" modified="20150217233228541" title="$:/temp/NewTagName">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="A clean theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.2">
@@ -4955,7 +4963,7 @@ __CONSIDERACIONES__
 **Documentación final: archivos de configuración comentados, scripts comentados, programas utilizados, bibliografía, posibles mejoras, etc. 
 *Todos los documentos se entregarán en pdf o html.</pre>
 </div>
-<div created="20141014232025643" modified="20141209233503255" tags="Índice" title="Actividades">
+<div created="20141014232025643" modified="20150217233145279" tags="[[M2 uf3]]" title="Actividades M2 uf3">
 <pre>''Proyectos básicos''
 
 &lt;&lt;&lt;
@@ -4970,13 +4978,71 @@ __CONSIDERACIONES__
 &lt;&lt;&lt;
 </pre>
 </div>
+<div created="20150217233404416" modified="20150217234557672" title="Arquitectura de los sistemas gestores de bases de datos">
+<pre>La arquitectura de SGBD depende lógicamente del sistema subyacente en el que se ejecuta. Aspectos como:
+
+*La conexión en red de varias computadoras permite que algunas tareas se ejecuten en sistema cliente-servidor.
+*El procesamiento paralelo dentro de una computadora permite acelerar las actividades de base de datos, proporcionando a las transacciones y consultas respuestas más rápidas. Son los sistemas de bases de datos paralelos.
+*La distribución de datos a través de distintas sedes de una organización permite que estos datos residan donde han sido generados o donde son más necesarios, pero continuar siendo accesibles desde otros lugares o departamentos diferentes. Son los sistemas distribuidos de bases de datos.
+!Arquitecturas de sistemas servidores
+Hay de dos tipos:
+
+*''Servidores de transacciones'': también llamados servidores de consultas, proporcionan una interfaz a través de la cual los clientes pueden enviar peticiones para realizar una acción que el servidor ejecutará y cuyos resultados se devolverán al cliente. Hoy en día los servidores de transacciones consisten en múltiples procesos accediendo a los datos en memoria compartida:
+**Proceso servidor: reciben, ejecutan y devuelven los resultados de las consultas realizadas por los clientes. Algunos sistemas utilizan un proceso distinto para cada sesión de usuario y otros utilizan un único proceso para todas las sesiones del usuario pero con múltiples hebras. También los hay con arquitecturas híbridas.
+**Proceso gestor de bloqueos: gestiona bloqueos: concesión, liberación y detección de interbloqueos.
+**Proceso escritor/lector: proceso que vuelca en disco los bloques de memoria intermedia modificados de forma continua y viceversa
+**Proceso escritor de registro: genera las entradas del registro.
+**Proceso punto de revisión: realiza periódicamente puntos de revisión.
+**Proceso monitor de procesos: observa resto de procesos y, si cualquiera falla, realiza las acciones de recuperación pertinentes.
+:Todos estos procesos pueden y deben acceder a los datos de la memoria compartida. Ya que múltiples procesos pueden leer o realizar actualizaciones en las estructuras de datos en memoria compartida, debe haber mecanismos que aseguren que solo uno de ellos está modificando una estructura de datos en un momento dado, y que ningún proceso está leyendo una estructura de datos mientras otros la escriben. Tal exclusión mutua debe implementarse utilizando funciones del SO.
+*''Servidores de datos'': permiten a los clientes interaccionar con los servidores realizando peticiones de lectura o modificación de datos en unidades tales como archivos o páginas (estilo servidores de archivo como samba o NFS). Los servidores de datos de los sistemas de bases de datos ofrecen muchas más funcionalidades que los servidores de archivo; soportan unidades de datos de menor tamaño que los archivos (objetos, tuplas). Proporcionan facilidades de indexación o de transacción para evitar inconsistencias en los datos, etc.
+!Sistemas paralelos
+Los sistemas paralelos mejoran la velocidad de procesamiento y de E/S porque la CPU y los discos funcionan en paralelo. Son sistemas tremendamente potentes capaces de manejar datos del orden de los terabytes y miles de transacciones por segundo. Una máquina paralela de grano grueso consiste en un pequeño número de potentes procesadores; una máquina masivamente paralela o de grano fino utiliza miles de procesadores más pequeños. Estas últimas soportan un grado de paralelismo mucho mayor.
+Para evaluar el rendimiento de un SGBD existen dos medidas principales: productividad, tareas por unidad de tiempo y tiempo de respuesta, cantidad de tiempo para completar una única tarea. Un sistema que procese gran cantidad de transacciones puede mejorar su productividad realizando muchas transacciones en paralelo. Un sistema que procese transacciones largas puede mejorar su tiempo de respuesta realizando en paralelo las distintas subtareas de cada transacción.
+
+__''Arquitecturas paralelas de bases de datos''__
+
+Existen varios modelos:
+
+[img[modelos|http://2.bp.blogspot.com/_xIp40chzzSk/Svwv2hbJ2bI/AAAAAAAAABo/W-A35AcG2Eo/s400/base+dato+paralela.png]]
+
+*''Memoria compartida'': todos los procesadores comparten una memoria común. Ventaja: gran velocidad en la comunicación entre procesadores (cualquiera puede acceder a memoria sin necesidad de //software//. Inconveniente: no puede ir más allá de los 64 procesadores porque el bus o la red de interconexión se convertiría en un cuello de botella.
+*''Disco compartido'': todos los procesadores comparten un conjunto de discos común. Ventaja: tolerancia a fallos: si un procesador falla el resto pueden . reemplazarle. Inconveniente: si hay muchos accesos a disco, el bus (interconexión) vuelve a ser un cuello de botella y limita el número de procesadores posibles.
+*''Sin compartimiento'': los procesadores no comparten ni memoria ni disco.Ventaja: ampliabilidad. Inconveniente:  coste de comunicación y de acceso a discos remotos.
+*''Jerárquica'': híbrido de las anteriores. Ventaja: versatilidad y ampliabilidad. Inconveniente: complejidad en la programación de estos sistemas. Para reducir esta complejidad se han creado arquitecturas de memoria virtual distribuida en las que hay una única memoria desde el punto de vista lógico, pero hay varios sistemas de memoria disjuntos desde el punto de vista físico. Dado que las velocidades de acceso son diferentes dependiendo de si la página está disponible localmente o no, esta arquitectura también se denomina arquitectura de memoria no uniforme (NUMA).
+!Sistemas distribuidos
+*En un sistema distribuido de bases de datos se almacena la base de datos en varias computadoras. 
+*Los medios de comunicación (redes de alta velocidad o telefónicas) pueden poner en contacto las distintas computadoras de un sistema distribuido.
+*No comparten ni memoria ni discos.
+*Varían en tamaño y función: desde estaciones de trabajo a grandes sistemas.
+*Las computadoras que forman parte del sistema distribuido suelen recibir el nombre de ''nodos'' o ''sitios''.
+*Diferencias con los sistemas paralelos sin compartimento: los nodos se encuentran en lugares geográficamente distintos, se administran de forma separada y poseen una interconexión más lenta.
+*En un sistema distribuido existen dos tipos de transacciones: locales y globales. 
+**Locales: accede a datos del único sitio en el cual se inicio la transacción.
+**Globales: accede a uno o varios sitios diferentes de aquél donde se inicio la transacción.
+__''Ventajas''__
+
+*''Datos compartidos'': usuarios pueden acceder a los datos que residen en distintas ubicaciones.
+*''Autonomía'': Cada ubicación tiene un cierto grado de control sobre los datos que se almacenan localmente.
+*''Disponibilidad'': Si un &quot;sitio&quot; del sistema distribuido falla, los sitios restantes pueden seguir trabajando. En particular, si los elementos de datos están replicados en varios nodos, una transacción que necesite un elemento de datos en particular puede encontrarlo en varios sitios. Por lo tanto, el fallo de un sitio no implica necesariamente la caída del sistema.
+__''Inconvenientes''__
+
+El principal inconveniente de los sistemas distribuidos es la complejidad añadida que es necesaria para garantizar la coordinación apropiada entre los sitios. Esta complejidad la podemos desgranar en:
+
+*Un mayor coste de desarrollo de software debido al incremento de la complejidad.
+*Una mayor probabilidad de errores difíciles de detectar.
+*Una mayor sobrecarga de procesamiento debido al intercambio de mensajes y cómputo necesario para conseguir la coordinación entre los diferentes sitios.</pre>
+</div>
 <div created="20141105085204443" modified="20141105085210391" title="Conceptos de seguridad y recuperación">
 <pre>;Seguridad
 :En este contexto, seguridad significa no perder los datos bajo ningún concepto. Todo proyecto informático debe constar de una planificación de medidas preventivas que eviten la pérdida de datos. Dentro de esta planificación se considerará: cuándo se realizarán las copias de seguridad, soportes de las copias, mantenimiento físico de dichos soportes, realización de auditorías, etc.
 ;Recuperación
 :La recuperación define el proceso mediante el cual un base de datos almacenada en una copia de seguridad vuelve a estar operativa. La recuperación de datos va, lógicamente, estrechamente ligada a la seguridad de los mismos ya que se trata del proceso inverso.</pre>
 </div>
-<div created="20141014230624953" modified="20141014230726252" tags="Índice" title="Contenido">
+<div created="20150217233203031" modified="20150217234608036" tags="[[M10 uf2]]" title="Contenido M10 uf2">
+<pre>#[[Arquitectura de los sistemas gestores de bases de datos]]</pre>
+</div>
+<div created="20141014230624953" modified="20150217233132126" tags="[[M2 uf3]]" title="Contenido M2 uf3">
 <pre>&lt;&lt;list-links &quot;[tag[Contenido]]&quot;&gt;&gt;</pre>
 </div>
 <div created="20141105085813796" modified="20141105092142938" title="Copias y recuperación en MySql">
@@ -5176,6 +5242,12 @@ Otras instrucciones interesantes: RENAME USER, SET PASSWORD. La primera para cam
 *Se puede obligar al servidor a reiniciar los registros con el comando `FLUSH LOGS` o con `mysqladmin flush-logs` o, cuando hacemos una copia lógica con `myslqdump --flush-logs` o `mysqldump --master-data`
 *El //binary log// se vuelca cuando llega al máximo indicado en //max-binlog-size//
 </pre>
+</div>
+<div created="20150217232903427" modified="20150217233007059" tags="Índice" title="M10 uf2">
+<pre>&lt;&lt;list-links &quot;[tag[M10 uf2]]&quot;&gt;&gt;</pre>
+</div>
+<div created="20150217232839553" modified="20150217232949654" tags="Índice" title="M2 uf3">
+<pre>&lt;&lt;list-links &quot;[tag[M2 uf3]]&quot;&gt;&gt;</pre>
 </div>
 <div created="20141105085241485" modified="20141105085328406" title="Planificación">
 <pre>*Todo proyecto de desarrollo informático requiere durante su etapa de diseño de un plan de contingencia que implemente unas políticas de seguridad. Este plan deberá indicar:
