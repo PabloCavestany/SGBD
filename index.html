@@ -159,6 +159,8 @@ Error message and password prompt
 
 <li>03_Trabajo final del módulo 2</li>
 
+<li>Actividades M10 uf2</li>
+
 <li>Actividades M2 uf3</li>
 
 <li>Arquitectura de los sistemas gestores de bases de datos</li>
@@ -182,6 +184,10 @@ Error message and password prompt
 <li>M10 uf2</li>
 
 <li>M2 uf3</li>
+
+<li>MySql Cluster I</li>
+
+<li>MySql Cluster II</li>
 
 <li>Planificación</li>
 
@@ -4756,13 +4762,13 @@ Error message and password prompt
 <div modified="20141014230919905" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div modified="20150217234427003" title="$:/state/sidebar">
+<div modified="20150218105943082" title="$:/state/sidebar">
 <pre>no</pre>
 </div>
 <div modified="20141105092125898" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div list="[[Contenido M10 uf2]] [[Arquitectura de los sistemas gestores de bases de datos]]" title="$:/StoryList">
+<div list="[[Actividades M10 uf2]] [[MySql Cluster II]] [[MySql Cluster I]] Índice [[M10 uf2]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -4962,6 +4968,20 @@ __CONSIDERACIONES__
 **Un pequeño documento explicando cómo se resuelven los problemas propuestos.
 **Documentación final: archivos de configuración comentados, scripts comentados, programas utilizados, bibliografía, posibles mejoras, etc. 
 *Todos los documentos se entregarán en pdf o html.</pre>
+</div>
+<div created="20150218105812560" modified="20150218111352289" tags="[[M10 uf2]]" title="Actividades M10 uf2">
+<pre>''Proyectos básicos''
+
+&lt;&lt;&lt;
+*[[MySql Cluster I]]
+*[[MySql Cluster II]]
+
+&lt;&lt;&lt;
+''Proyectos no básicos''
+
+&lt;&lt;&lt;
+
+&lt;&lt;&lt;</pre>
 </div>
 <div created="20141014232025643" modified="20150217233145279" tags="[[M2 uf3]]" title="Actividades M2 uf3">
 <pre>''Proyectos básicos''
@@ -5248,6 +5268,42 @@ Otras instrucciones interesantes: RENAME USER, SET PASSWORD. La primera para cam
 </div>
 <div created="20150217232839553" modified="20150217232949654" tags="Índice" title="M2 uf3">
 <pre>&lt;&lt;list-links &quot;[tag[M2 uf3]]&quot;&gt;&gt;</pre>
+</div>
+<div created="20150218105937460" modified="20150218110600001" title="MySql Cluster I">
+<pre>__Actividad 1__
+
+#[[Accede|http://dev.mysql.com/doc/refman/5.5/en/mysql-cluster.html]]
+
+#Lee la introducción del capítulo 18, la del apartado 18.1 y el subapartado 18.1.1
+#Trata de documentar/definir los siguientes items:
+
+***High-availability and high-redundancy
+***Diferencia entre //hosts// y //nodes//
+***Qué es NDB.
+***¿Cuáles son los tres //nodes// indispensables en un sistema ~MySql Cluster?
+***¿Qué tipos de clientes pueden acceder al sistema ~MySql Cluster?
+***Diferencias generales entre //Cluster log// y //Node log//
+***Diferencias generales entre LCP y GCP. 
+__Actividad 2__ (continuación de la anterior)
+
+#. Lee el apartado 18.1.2 y el 18.1.3
+#Trata de documentar/definir los siguientes items:
+***Define: node, node group, partition, replica
+***En el ejemplo del apartado 18.1.2 ¿Cuál es el número mínimo de nodos que puede tener el cluster? 
+***¿Exige algún requisito de hardware la instalación de mysql cluster? ¿Por qué?
+***En cuanto a la red, ¿cuál debe ser el ancho de banda entre nodos del cluster? Y, ¿cómo debe ser la configuración de dicha red? Justifica las respuestas.
+***¿Qué es una zona desmiliratizada (DMZ)?
+***¿Qué es un nodo lento?¿Cómo los detecta el sistema?
+***¿Qué es SCI?.</pre>
+</div>
+<div created="20150218110720758" modified="20150218111346734" title="MySql Cluster II">
+<pre>!Instala mysql_cluster.
+#Sigue las indicaciones que aporta el [[manual|http://dev.mysql.com/doc/refman/5.5/en/mysql-cluster-install-linux.html]]. 
+#Realiza la instalación desde los binarios ya precompilados (binary release). 
+#AYUDA IMPORTANTE: puede que durante el proceso de instalación necesites instalar la librería libaio.so.1.
+
+#Una vez consigas instalar mysqld en una máquina, clónala tres veces. Obtendrás cuatro máquinas. En dos de ellas vas a colocar dos nodos, en una tercera colocarás el nodo de administración y en la cuarta la reservarás para el nodo SQL.
+Para la puesta en marcha debes de seguir, una vez más, el [[manual|http://dev.mysql.com/doc/refman/5.5/en/mysql-cluster-install-first-start.html]]. Y, en el siguiente capítulo, verás cómo crear una base de datos en el cluster.</pre>
 </div>
 <div created="20141105085241485" modified="20141105085328406" title="Planificación">
 <pre>*Todo proyecto de desarrollo informático requiere durante su etapa de diseño de un plan de contingencia que implemente unas políticas de seguridad. Este plan deberá indicar:
