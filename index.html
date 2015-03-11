@@ -159,9 +159,13 @@ Error message and password prompt
 
 <li>03_Trabajo final del módulo 2</li>
 
+<li>Actividad: creación objetos en la bbdd</li>
+
 <li>Actividades M10 uf2</li>
 
 <li>Actividades M2 uf3</li>
+
+<li>Añadir nodo al cluster en caliente</li>
 
 <li>Arquitectura de los sistemas gestores de bases de datos</li>
 
@@ -175,7 +179,13 @@ Error message and password prompt
 
 <li>DCL en MySql</li>
 
+<li>Getting Started</li>
+
 <li>Índice</li>
+
+<li>Instalación de Oracle en Fedora</li>
+
+<li>Introducción</li>
 
 <li>La LOPD</li>
 
@@ -191,7 +201,13 @@ Error message and password prompt
 
 <li>Planificación</li>
 
+<li>Primeros pasos con Oracle XE</li>
+
+<li>Realizar copias de seguridad del cluster</li>
+
 <li>Replicación en MySql</li>
+
+<li>sobre SQL*Plus</li>
 
 <li>The big three CIA</li>
 
@@ -4768,7 +4784,7 @@ Error message and password prompt
 <div modified="20141105092125898" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div list="[[Actividades M10 uf2]] [[MySql Cluster II]] [[MySql Cluster I]] Índice [[M10 uf2]]" title="$:/StoryList">
+<div list="Índice [[M10 uf2]] [[Actividades M10 uf2]] [[Realizar copias de seguridad del cluster]] [[Primeros pasos con Oracle XE]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -4969,7 +4985,15 @@ __CONSIDERACIONES__
 **Documentación final: archivos de configuración comentados, scripts comentados, programas utilizados, bibliografía, posibles mejoras, etc. 
 *Todos los documentos se entregarán en pdf o html.</pre>
 </div>
-<div created="20150218105812560" modified="20150218111352289" tags="[[M10 uf2]]" title="Actividades M10 uf2">
+<div created="20150311003636374" modified="20150311003713099" title="Actividad: creación objetos en la bbdd">
+<pre>*Ejecuta SQL*Plus
+*Loguéate como Chris.
+*Averigua tablas asociadas al esquema de Chris (el &quot;show tables&quot; de ~MySql): `select * from user_tables;`
+NOTA:  user_tables es una vista creada por el sistema donde se muestran todas las tablas creadas por el usuario conectado. Por ejemplo, si te logueas como system y después consultas la vista user_tables verás la cantidad de tablas y vistas accesibles por este usuario.
+
+*Crea una tabla, inserta varios valores y realiza un par de consultas.</pre>
+</div>
+<div created="20150218105812560" modified="20150311003923879" tags="[[M10 uf2]]" title="Actividades M10 uf2">
 <pre>''Proyectos básicos''
 
 &lt;&lt;&lt;
@@ -4980,7 +5004,14 @@ __CONSIDERACIONES__
 ''Proyectos no básicos''
 
 &lt;&lt;&lt;
+__Cluster__
 
+*[[Añadir nodo al cluster en caliente]]
+*[[Realizar copias de seguridad del cluster]]
+__Base de datos Oracle__
+
+*[[Instalación de Oracle en Fedora]]
+*[[Primeros pasos con Oracle XE]]
 &lt;&lt;&lt;</pre>
 </div>
 <div created="20141014232025643" modified="20150217233145279" tags="[[M2 uf3]]" title="Actividades M2 uf3">
@@ -4997,6 +5028,9 @@ __CONSIDERACIONES__
 *[[03_Actividades sobre logs en MySql]]
 &lt;&lt;&lt;
 </pre>
+</div>
+<div created="20150311001407258" modified="20150311001518762" title="Añadir nodo al cluster en caliente">
+<pre>Busca en el manual cómo conseguir añadir un nodo al clúster. No olvides documentar todos los pasos.</pre>
 </div>
 <div created="20150217233404416" modified="20150217234557672" title="Arquitectura de los sistemas gestores de bases de datos">
 <pre>La arquitectura de SGBD depende lógicamente del sistema subyacente en el que se ejecuta. Aspectos como:
@@ -5243,8 +5277,130 @@ FROM user [, user] ...
 Otras instrucciones interesantes: RENAME USER, SET PASSWORD. La primera para cambiar el nombre de un usuario y, la segunda, para cambiar la contraseña..
 </pre>
 </div>
+<div created="20150311002957995" modified="20150311003717652" title="Getting Started">
+<pre>*[[Fuente|http://docs.oracle.com/cd/E17781_01/admin.112/e18585/toc.htm]]
+!!!System Menu
+*Una vez instalado oracle xe correctamente se nos deben haber creado en el menú del sistema un conjunto de enlaces:
+**Get Help: enlaces a webs para registrarse, acceso al forum de usuarios, documentación
+**Backup Database: En modo NOARCHIVELOG (modo por defecto), cierra la base de datos, realiza una copia y vuelve a levantarla. En modo ARCHIVELOG realiza una copia online de la bbdd
+**Restore Database: restaura la base de datos según la última copia realizada
+**SQL* Plus: intérprete de comandos SQL. Para conectarse usar `connect usuario/password`. Para obtener ayuda, escribir //help// una vez conectados. Mirar [[sobre SQL*Plus]]
+**Start Database: para levantar la instancia de la base de datos
+**Stop Database: para parar la bbdd
+**Get Started: para acceder a ''Database Home Page''
+!!Database Home  Page
+*Interfaz web para realizar labores administrativas en la bbdd, como por ejemplo:
+**Monitorizar almacenamiento de la bbdd
+**Monitorizar sesiones en la bbdd
+**Acceder a los datos de inicialización de la bbdd
+**Acceso a Oracle Application Express
+*Acceso: tratar de acceder a cualquiera de los elementos de la web. Si solicita usuario/password utilizar system/password_instalación (austria)
+!!Creando un usuario de la bbdd
+*Se debe crear por lo menos un usuario si queremos crear objetos de esquema
+*Un //database user// es un tipo de //schema object//. Estará asociado a un esquema del que será propietario. En principio, todos los objetos que cree pertenecerán a dicho esquema.
+*Para crear el usuario y darle permisos:
+&lt;&lt;&lt;
+*Abrimos terminal y ejecutamos `sqlplus`. O también desde el menú del SO podemos llamar al enlace SQL*Plus
+*Una vez dentro del cliente, nos conectamos a la bbdd: `connect system/austria`
+*Creamos usuario: `create user chris identified by 1234;`
+*Le otorgamos permisos: `grant connect, resource to chris;`
+&lt;&lt;&lt;
+[[Actividad: creación objetos en la bbdd]]</pre>
+</div>
 <div created="20141014230516054" modified="20141014230622034" title="Índice">
 <pre>&lt;&lt;list-links &quot;[tag[Índice]]&quot;&gt;&gt;</pre>
+</div>
+<div created="20150311001654894" modified="20150311002540406" title="Instalación de Oracle en Fedora">
+<pre>*Montamos una máquina Fedora 19 o 20 (no he probado con 21).
+*Bajamos oracle 11g express [[aquí|http://www.oracle.com/technetwork/products/express-edition/downloads/index.html]]. Por cierto, ¿en qué consiste la Express Edition?
+*Descomprimo
+*Voy a seguir este [[manual|http://docs.oracle.com/cd/E17781_01/install.112/e18802/toc.htm]] para realizar la instalación.
+!!Limitaciones de XE (entre otras)
+*Solo puede gestinar una CPU
+*Solo utilizará como máximo 1G de RAM
+*Datos de usuario tienen un máximo de 11G
+!!Requerimientos de sistema
+*El tamaño de la swap debe ser de 2G o, en su defecto, el doble del tamaño de la RAM. Para comprobarlo: `free -m`
+*El tamaño mínimo de RAM es de 256M aunque se recomienda un mínimo de 512M
+*Arquitectura de 64-bit
+*Se necesitan permisos de root para instalar oracle XE
+*Software necesario:
+&lt;&lt;&lt;
+*//glibc// en una versión igual o superior a la 2.3.4-2.41
+*//make// : superior a 3.80
+*//binutils// : 2.16.91.0.5
+*//gcc//:4.1.2
+*//libaio//:0.3.104
+&lt;&lt;&lt;
+*Lo instalamos:
+```
+&gt; yum install glibc
+&gt; yum install make
+&gt; yum install binutils
+&gt; yum install gcc
+&gt; yum install libaio
+```
+*Parámetros necesarios de kernel. Los añadimos a /etc/sysctl.conf
+```
+#### Oracle 11g Kernel Parameters ####
+kernel.shmmax=4294967295
+kernel.shmmni=4096
+kernel.shmall=2097152
+kernel.sem= 250 32000 100 128
+fs.file-max= 6815744
+net.ipv4.ip_local_port_range=9000 65500
+```
+*Para aplicar los cambios: `/sbin/sysctl -p`
+!!Instalando Oracle 11 XE
+*Logearse como root
+*Ejecutar: ` rpm -ivh /&lt;ruta_Al_Paquete_Descomprimido&gt;/oracle-xe-11.2.0-1.0.x86_64.rpm`
+*Para configurar la base de datos `/etc/init.d/oracle-xe configure`. En principio dejaremos valores por defecto:
+&lt;&lt;&lt;
+*Puerto HTTP: 8080
+*Puerto escucha (Listener) de la bbdd: 1521
+*Establecer contraseña para usuarios administradores (SYS y SYSTEM): austria
+*Respondemos afirmativamente a la pregunta de si queremos activar oracle-xe con el inicio del sistema
+&lt;&lt;&lt;
+*Para iniciar/parar la bbdd, ejecutar como root: `/etc/init.d/oracle-xe start/stop`. (Ojo, en principio, no es necesario iniciar la bbdd, Durante la instalación ya ha sido iniciada).
+*Logs en `$ORACLE_HOME/config/log`
+*No está demás echarle un vistazo a los logs. En principio:`$ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe`
+!!Variables de entorno
+*Para generar variables de entorno que necesita oracle:
+```
+&gt; cd /u01/app/oracle/product/11.2.0/xe/bin
+&gt; . ./oracle_env.sh
+```
+*No está demás echarle un vistazo al archivo oracle_env.sh
+*Comprobamos con `echo $ORACLE_HOME`
+*Es conveniente añadir estas variables al entorno de nuestro usuario en Fedora. Para ello,  editamos el archivo .bashrc  y añadimos la siguiente línea: 
+`. /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh`
+
+*Ahora ya podremos llamar al intérprete de comandos SQL (SQL*Plus) de oracle desde nuestro usuario de sistema. </pre>
+</div>
+<div created="20150311002844857" modified="20150311002928246" title="Introducción">
+<pre>!Sobre Oracle XE
+*XE guarda la información en estructuras lógicas llamadas //schemas//
+*Cuando nos conectamos a la bbdd proveyendo nuestro nombre y password, habremos de indicar un esquema e indicar que somos su propietario
+*En XE el nombre del usuario y el nombre del //schema// al que se conecta es el mismo
+!!Schema Objects
+*Todo objecto de la bbdd pertenece a un esquema y posee un nombre único dentro del mismo
+*Algunos de los objetos que nos podemos encontrar son: 
+**Tablas: la unidad básica de almacenamiento de información
+**Índices: objetos opcionales asociados a una o más columnas de una tabla. Sirven para mejorar el rendimiento de la bbdd
+**Vistas: combina información de diferentes tablas
+**Sequences: cuando todos los filas de una tabla deben ser diferentes, podemos generar ID (enteros positivos) para cada fila
+**Synonyms: alias de los objetos del esquema (por seguridad o por comodidad)
+**Stored programs: rutinas almacenadas en el servidor (funciones, procedimientos, disparadores)
+**Packages: conjunto de rutinas.
+!!Acceso a la bbdd
+*Solo podemos acceder a la bbdd a través de programas clientes. La interfaz de acceso de estos programas será SQL o PL/SQL. Tenemos:
+**SQL*Plus: cliente de terminal. Posee sus propias variables de entorno. Interpreta comandos de SQL, comandos SQL*Plus, PL/SQL y comandos del SO para ejecutar algunas tareas concretas (editar, almacenar o imprimir consultas; ejecutar tareas de mantenimiento de la bbdd, etc)
+**SQL Developer: versión gráfica de SQL*Plus. Está escrita en Java y accesible para todo el mundo.
+*Otros clientes posibles:
+**Oracle Application Express: utilidad para crear aplicaciones web de forma rápida
+**Oracle Java Database Connectivity (JBDC): API que permite enviar comandos SQL a bases de datos relaciones como XE
+**Open Oracle Connectivy (OBDC): conjunto de ~APIs que permiten el acceso a las bbdd relacionales. Un estándar creado por MS de conectividad entre aplicaciones y bbdd.
+</pre>
 </div>
 <div created="20141014231039517" modified="20141014231047982" title="La LOPD">
 <pre>Vista en M11</pre>
@@ -5329,6 +5485,15 @@ Otro tipo de acciones que se pueden considerar:
 *Utilizar un SAI
 *Prevención de riesgos físicos: evitar fuentes de campos magnéticos, de calor excesivo, frío, humedad, etc.</pre>
 </div>
+<div created="20150311002802973" modified="20150311003728179" title="Primeros pasos con Oracle XE">
+<pre>[[Extraído del Manual de Oracle 11g para desarrolladores|http://docs.oracle.com/cd/E17781_01/appdev.112/e18147/toc.htm]]
+
+#[[Introducción]]
+#[[Getting Started]]</pre>
+</div>
+<div created="20150311003838015" modified="20150311003919847" title="Realizar copias de seguridad del cluster">
+<pre>Siguiendo los pasos indicados por el manual, busca la manera de realizar copias de seguridad de los datos contenidos en el cluster.</pre>
+</div>
 <div created="20141203000317677" modified="20141209233448651" title="Replicación en MySql">
 <pre>|!Nota: Esta actividad es introductoria a la replicación en ~MySql. El objetivo es familiarizarse con la configuración|
 *Permite la replicación de datos de un servidor maestro a uno o más servidores esclavos.
@@ -5405,6 +5570,41 @@ Los comandos más usuales para chequear el estado de la replicación son:
 `SHOW SLAVE STATUS`  en el esclavo y `SHOW PROCESSLIST \G`  en ambos equipos para ver la distribución del trabajo por procesos.
 
 *Muy interesante leer [[esto|http://dev.mysql.com/doc/refman/5.5/en/replication-administration.html]]</pre>
+</div>
+<div created="20150311003112157" modified="20150311003424384" title="sobre SQL*Plus">
+<pre>!SQL*Plus: el intérprete de comandos de Oracle
+*Es el intérprete de oracle (lo mismo que mysql para bbdd mysql)
+*Se puede invocar desde el SO con la sintaxis:
+```
+sqlplus [{usuario[/password][@&lt;identificador_conexión&gt;] | / | /nolog}][AS {SYSDBA|SYSOPER}]
+```
+*En oracle, cada instancia está referenciada por uno o más identificadores de conexión.
+*La opción /nolog arranca sqlplus sin conectarse a la bbdd.
+*Lo opción / conecta a la instancia sin usuario. Suele usarse para tareas administrativas: `sqlplus / as SYSDBA`
+*Cada usuario se puede conectar representando un rol; estos roles son el de administrador de bbdd (SYSDBA) y operador de bbdd (SYSOPER). Ambos tienen privilegios para conectarse a la bbdd cuando no está abierta, pudiendo realizar tareas de administración.
+!!Ejecución de consultas en SQL*Plus
+*Las consultas acaban en ;
+*No es sensible a mayúsculas / minúsculas ni para palabras ni para objetos
+*Comentarios con dos guiones `--`
+*Existe un tabla llamada Dual que está disponible para todos los usuarios, y sirve para seleccionar variables del sistema o para evaluar un expresión:`SQL&gt; select sysdate, user from dual; `
+*Existe un intérprete de comandos gráfico en Oracle llamado iSQL*Plus, con interfaz web. Se instala aparte del software de Oracle (paquete isqlplus.zip en ooracle.com)
+*No tiene histórico en linux [[mirar|http://vjavierf.wordpress.com/2011/03/29/historico-de-comandos-para-sqlplus-en-linux-y-unix/]] o también [[sqlplus historico|http://www.lintips.com/?q=node/155]]
+*Algunas comandos de sqlplus útiles:
+&lt;&lt;&lt;
+*SHOW USER -- Para saber con qué usuario estás conectado. 
+*EDIT -- Abre el editor. 
+*EXIT -- Termina la conexión. 
+*GET -- Extrae el contenido de un archivo con comandos sql. 
+*HOST -- ejecuta comandos de sistema operativo. 
+*LIST -- muestra el ultimo comando. 
+*RUN -- Ejecuta el contenido del buffer. 
+*SAVE -- Guarda los comandos sql en archivo. 
+*SET -- cambia el ambiente de SQLPLUS 
+*SHOW -- muestra la configuración vigente. 
+*SPOOL -- Envia salida a un archivo. 
+*START -- Ejecuta el contenido SQL de un archivo. 
+*SET SQLPROMPT -- Cambia el prompt. 
+&lt;&lt;&lt;</pre>
 </div>
 <div created="20141014230918370" modified="20141014231011870" title="The big three CIA">
 <pre>!Seguridad de la información
