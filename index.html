@@ -179,8 +179,6 @@ Error message and password prompt
 
 <li>DCL en MySql</li>
 
-<li>Draft of '03_Trabajo final del módulo 2'</li>
-
 <li>Getting Started</li>
 
 <li>Índice</li>
@@ -4788,7 +4786,7 @@ Error message and password prompt
 <div modified="20141105092125898" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div list="Índice [[M2 uf3]] [[Actividades M2 uf3]] [[Draft of '03_Trabajo final del módulo 2']]" title="$:/StoryList">
+<div list="Índice [[M2 uf3]] [[Actividades M2 uf3]] [[03_Trabajo final del módulo 2]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -4934,7 +4932,7 @@ Escribe un script de shell que realice una copia de la base de datos y la envíe
 *[[Logs en MySql]]
 *[[Replicación en MySql]]</pre>
 </div>
-<div created="20141209233345792" modified="20141210000048923" title="03_Trabajo final del módulo 2">
+<div created="20141209233345792" modified="20160125152133424" title="03_Trabajo final del módulo 2">
 <pre>|!Este trabajo se puede realizar en parejas. La nota será sobre 20 y la pareja se la repartirá con los pesos que acuerden|
 Vamos a suponer que sois los administradores de un sistema gestor de base de datos basado en ~MySql en una empresa. La empresa controla la gestión de un hotel. Dicha empresa dispone de una base de datos que llamaremos BBDD del hotel. La estructura de la base de datos responde al siguiente esquema entidad-relación:
 [img[Hotel|hotel_amp.png]]
@@ -4977,8 +4975,9 @@ También podría considerarse el automatizar la tarea y que periódicamente y de
 __CONSIDERACIONES__
 
 *El trabajo se recomienda realizarlo en parejas. Como he dicho antes, la nota la pondré a la pareja y ella decidirá que porcentaje corresponde a cada uno de los integrantes de la pareja.
-*Se dispondrá de los siguientes días para realizar el trabajo: 10/12, 17/12, 14/01, 21/01, 28/01
-*La corrección &quot;visual&quot; del proyecto y entrega del trabajo se hará el día 28 del 01.
+*Se dispondrá de los siguientes días para realizar el trabajo: 25/01, 01/02, 08/02, 15/02
+*La corrección &quot;visual&quot; del proyecto y entrega del trabajo se hará el día 29 del 02.
+*Solo es obligado implementar dos tablas de toda la base de datos y los permisos de uno solo de los usuarios.
 *Se debe entregar:
 **Un pequeño documento explicando cómo se resuelven los problemas propuestos.
 **Documentación final: archivos de configuración comentados, scripts comentados, programas utilizados, bibliografía, posibles mejoras, etc. 
@@ -5280,57 +5279,6 @@ FROM user [, user] ...
 
 Otras instrucciones interesantes: RENAME USER, SET PASSWORD. La primera para cambiar el nombre de un usuario y, la segunda, para cambiar la contraseña..
 </pre>
-</div>
-<div created="20141209233345792" draft.of="03_Trabajo final del módulo 2" draft.title="03_Trabajo final del módulo 2" modified="20160125151752493" title="Draft of '03_Trabajo final del módulo 2'">
-<pre>|!Este trabajo se puede realizar en parejas. La nota será sobre 20 y la pareja se la repartirá con los pesos que acuerden|
-Vamos a suponer que sois los administradores de un sistema gestor de base de datos basado en ~MySql en una empresa. La empresa controla la gestión de un hotel. Dicha empresa dispone de una base de datos que llamaremos BBDD del hotel. La estructura de la base de datos responde al siguiente esquema entidad-relación:
-[img[Hotel|hotel_amp.png]]
-
-El diagrama de casos de uso es:
-[img[casos_hotel|casos us.png]]
-
-La empresa confia en vosotros para:
-
-*Garantizar la confidencialidad de los datos.
-*Garantizar la disponibilidad de los datos.
-*Garantizar la seguridad y protección de los datos considerando que los datos son de un nivel de seguridad básico según la catalogación realizada en la LOPD.
-
-Además, con cierta periodicidad, la empresa elabora un informe que exige la manipulación estadística de algunos datos de la base de datos. Para facilitar el trabajo al departamento que realiza el informe, la empresa os pide el volcado de los datos de las tablas CLIENTE Y RESERVA en un formato que sea fácilmente exportable a una hoja de cálculo. 
-
-Por tanto, deberéis implementar:
-
-*Política de control de accesos.
-*Sistema de copias de seguridad.
-*Volcado  periódico de datos con formato.
-
-!!Política de control de accesos.
-Se debe garantizar que los únicos usuarios que acceden a la base de datos son los establecidos por la empresa. La empresa dispone de los siguientes usuarios:
-
-*''Administrador de la base de datos'': en principio, sois vosotros dos. Debéis de tener todos los privilegios en la base de datos y la posibilidad de acceso remoto.
-*''Administrador de datos'': usuarios que utilizan los diferentes aplicativos para realizar las modificaciones. Debe poder realizar consultas y modificar los datos que alberga la base de datos. 
-*''Usuarios que se desprenden de la lectura del diagrama de casos de uso''. Cada uno de ellos debe poder consultar/modificar las tablas que le correspondan.
-
-!!Sistema de copias de seguridad
-Bajo ningún concepto el sistema debe de dejar de dar servicio. Hay que considerar además:
-
-*Pueden existir picos en el número de consultas bastante elevados. Se debe evitar que el sistema colapse.
-*Los datos de la base de datos se modifican con relativa frecuencia. En un día laboral pueden haber unas 200 instrucciones que modifiquen la base de datos. Debe quedar constancia de absolutamente todos los cambios que se produzcan y, además, el registro de los cambios debe estar ordenado por días. 
-
-!!Volcado de datos
-El volcado de datos debe hacerse en formato //csv//. Es decir, los campos separados por comas y los diferentes registros separados por retornos de carro.
-Convendría que estos volcados se pudiesen hacer remotamente y que el acceso a los mismos fuese relativamente sencillo por parte de las personas de la empresa que los requiera (mail, web,ftp,etc.).
-También podría considerarse el automatizar la tarea y que periódicamente y de forma automática se generaran los volcados y se enviarán a las personas que lo solicitasen y tuviesen permisos.
-
-__CONSIDERACIONES__
-
-*El trabajo se recomienda realizarlo en parejas. Como he dicho antes, la nota la pondré a la pareja y ella decidirá que porcentaje corresponde a cada uno de los integrantes de la pareja.
-*Se dispondrá de los siguientes días para realizar el trabajo: 25/01, 01/02, 08/02, 15/02
-*La corrección &quot;visual&quot; del proyecto y entrega del trabajo se hará el día 29 del 02.
-*Solo es obligado implementar dos tablas de toda la base de datos y los permisos de uno solo de los usuarios.
-*Se debe entregar:
-**Un pequeño documento explicando cómo se resuelven los problemas propuestos.
-**Documentación final: archivos de configuración comentados, scripts comentados, programas utilizados, bibliografía, posibles mejoras, etc. 
-*Todos los documentos se entregarán en pdf o html.</pre>
 </div>
 <div created="20150311002957995" modified="20150311003717652" title="Getting Started">
 <pre>*[[Fuente|http://docs.oracle.com/cd/E17781_01/admin.112/e18585/toc.htm]]
