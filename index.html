@@ -4780,8 +4780,8 @@ Error message and password prompt
 <div modified="20141014230919905" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div modified="20151005141700375" title="$:/state/sidebar">
-<pre>yes</pre>
+<div modified="20161019231314600" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
 <div modified="20141105092125898" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Recent</pre>
@@ -4875,7 +4875,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20161019225404409" modified="20161019230757425" title="01_Repaso SQL en MySql">
+<div created="20161019225404409" modified="20161019231156218" title="01_Repaso SQL en MySql">
 <pre>!Actividad 1
 *Instala ~MySql. Pon como contraseña de root la palabra ‘austria’.
 *Accede como root 
@@ -4890,6 +4890,25 @@ Error message and password prompt
 *Asocia los alumnos Francisco Espejo y Imma Fernández con el profesor Basilio Vicente.
 *Modifica la edad del profesor Jaime Villanueva a 31.
 *Elimina la alumna Almudena Ochoa.
+!Actividad 2
+Realiza las siguientes consultas:
+
+*Muestra profesores con una edad superior a 50.
+*Muestra el número total de alumnos.
+*Muestra cuántos alumnos tiene a su cargo el profesor Basilio Vicente.
+*Ordena de mayor a menor los alumnos en función de la longitud (número de caracteres) de su dirección. Muestra el nombre del alumno y dicha longitud.
+*Muestra los alumnos cuyo nombre empiece por la letra F y tengan un 2 entre los dígitos del DNI
+*Ordena los profesores en función del número de alumnos que tienen a su cargo
+*¿Puedes cambiar el DNI del profesor Basilio Vicente?¿Por qué?
+*Añade la columna ‘Edad_Alumno’ a la tabla Alumno. Defínela como entero muy pequeño y positivo
+*Muestra cuántos alumnos tienen a su cargo cada profesor. Ordena según número de alumnos.
+*Muestra solo aquellos profesores que tengan más de un alumno a su cargo
+!Actividad 3
+*Crea un usuario que pueda ejecutar procedimientos. Llámalo manolo.
+*Crea un procedimiento que devuelva el número de alumnos que hay en la tabla ALUMNO. Lo llamaremos proc1
+ *¿Puede manolo ejecutar proc1?
+*Crea una función de devuelva el apellido del nombre del alumno que le pases como argumento a la fución. Así cuando el argumento de entrada sea Imma, devolverá Fernández.
+*Crea un dispardor que impida cambiar los DNIs de los profesores.
 </pre>
 </div>
 <div created="20141014230728474" modified="20141105092217976" tags="Contenido" title="01_Seguridad de la Información">
@@ -4897,20 +4916,26 @@ Error message and password prompt
 *[[La LOPD]]
 *[[DCL en MySql]]</pre>
 </div>
-<div created="20141014232043839" modified="20161019225109873" tags="Actividades" title="02_Actividades DCL en MySql">
+<div created="20141014232043839" modified="20161019232947742" tags="Actividades" title="02_Actividades DCL en MySql">
 <pre>!Actividad_1
-# Crea los siguientes usuarios y asígnales los permisos indicados en la bbdd 'empresa':
-##María@~CualquierEquipo: permisos para consultar cualquier vista de la bbdd y modificarla(si se puede).
-##Pep@~CualquierEquipoDe192.168.0.*: permisos para consultar la tabla EMP, DEPT Y CLIENT. Puede otorgar los mismos permisos a otros usuarios aunque no puede crear usuarios. El número máximo de consultas que puede realizar es de 10 consultas por hora.
+# Crea los siguientes usuarios y asígnales los permisos indicados en la bbdd 'Clase_primera' (base de datos creada en el ejercicio anterior):
+##María@~CualquierEquipo: permisos para consultar cualquier tabla de la bbdd y modificar la estructura de cualquier tabla.
+##Pep@~CualquierEquipoDe192.168.0.*: permisos para consultar la tabla PROFESOR y también para modificar cualquier dato de dicha tabla. Puede otorgar los mismos permisos a otros usuarios aunque no puede crear usuarios.
 ##Administrador@localhost: será el administrador de esta bbdd. Tendrá, por tanto, permisos para crear tablas, vistas, rutinas, modificarlas, eliminarlas, bloquearlas, gestionar usuarios de esa bbdd.
-##Invitado@~CualquierEquipo: permisos de consulta en la columna NOM de la tabla CLIENT y APELLIDO en EMP.
-##Cambia el nombre de María por Nuria y revócale la capacidad de modificar vistas.
+##Invitado@~CualquierEquipo: permisos de consulta en la columna Nombre_Alumno de la tabla ALUMNO y Nombre_Profesor en PROFESOR.
 ##Cambia la contraseña y el nombre del Administrador por (admin, 1234) pero utilizando la bbdd mysql y la función PASSWORD().
-## Añade a los permisos de Invitado el de consultar la columna DIRECCIÓN de CLIENT pero sin utilizar la instrucción GRANT
+## Añade a los permisos de Invitado el de consultar la columna Direccion_Alumno de ALUMNO pero sin utilizar la instrucción GRANT
 
+!Actividad 2
 Ejercicio por parejas:
 
-#Cada elemento de la pareja, creará uno o dos usuarios y les otorgará unos permisos muy concretos.
+#Cada elemento de la pareja, creará un usuario con la identidad &quot;~NombreCompañero&quot;@&quot;~IPdelCompañero&quot; y le otorgará unos permisos muy concretos en la base de datos &quot;Clase_primera&quot;
+#A continuación, cambiamos la configuración de la máquina virtual para que nuestro compañero pueda acceder.
+#Por último, accedemos a la máquina del compañero y averiguamos qué permisos nos ha dado.
+!Actividad 3
+Ejercicio por parejas:
+
+# Cambiamos los permisos que habíamos otorgado a nuestro compañero en la actividad anterior.
 #A continuación, se volcará la bbdd mysql. Se le cambiará el nombre y se volverá a cargar con el nuevo nombre.
 #Se eliminan las filas (usuario root, sistema, etc) no deseadas de la bbdd recién cargada de tal manera que quede una bbdd relativamente pequeña.
 #Se envía/recibe vía correo la bbdd del compañero
@@ -4918,19 +4943,13 @@ Ejercicio por parejas:
 #Se averiguan qué permisos a configurado el compañero.
 
 
-!Actividad_2: 
+!Actividad 4: 
 Recuperar contraseña de root en ~MySql:
 
-*Para el servidor y arráncalo de nuevo manualmente con la opción -skip-grant-tables para eliminar comprobación de usuarios.
+*Para el servidor y arráncalo de nuevo manualmente con la opción --skip-grant-tables para eliminar comprobación de usuarios.
 *Conéctate al servidor con `mysql -u root` y cambia la password de root.
 *Para el servidor y arráncalo de nuevo con el script /etc/init.d/mysql
 *Comprueba que efectivamente ahora puedes entrar con la nueva password.
-
-!Actividad_3: DCL_MySql (en parejas)
-*Crea base de datos con conjunto de caracteres latinos (acentos, eñe)
-*Crea el usuario nombre_compañero@IP_compañero. Donde nombre_compañero e IP_compañero son el nombre y la IP de tu pareja.
-*Asígnale al nuevo usuario unos cuantos permisos.
-*Solicita a tu compañero que se conecte a tu servidor y que averigüe qué permisos le has otorgado. Por otro lado, el habrá hecho lo propio, y tú tendrás que averiguar lo mismo en su servidor.
 
 !Actividad_4:Metadatos_MySql
 *Averigua el número de filas que tiene cada tabla de la base de datos 'mysql' sin acceder a la base de datos (utilizando el //information_schema//)</pre>
