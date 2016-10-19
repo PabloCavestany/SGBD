@@ -147,15 +147,15 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
-<li>01_Actividades DCL en MySql</li>
-
 <li>01_Seguridad de la Información</li>
 
-<li>02_Actividades sobre copias y restauración en MySql</li>
+<li>02_Actividades DCL en MySql</li>
 
 <li>02_Salvaguarda y recuperación de la Información</li>
 
-<li>03_Trabajo final del módulo 2</li>
+<li>03_Actividades sobre copias y restauración en MySql</li>
+
+<li>04_Trabajo final del módulo 2</li>
 
 <li>Actividad: creación objetos en la bbdd</li>
 
@@ -4784,7 +4784,7 @@ Error message and password prompt
 <div modified="20141105092125898" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div list="Índice [[M2 uf3]] [[Actividades M2 uf3]] [[03_Trabajo final del módulo 2]]" title="$:/StoryList">
+<div list="Índice [[M2 uf3]] [[Actividades M2 uf3]] [[04_Trabajo final del módulo 2]] [[03_Actividades sobre copias y restauración en MySql]] [[02_Actividades DCL en MySql]] [[M10 uf2]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -4873,9 +4873,31 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20141014232043839" modified="20141105092948959" tags="Actividades" title="01_Actividades DCL en MySql">
+<div created="20141014230728474" modified="20141105092217976" tags="Contenido" title="01_Seguridad de la Información">
+<pre>*[[The big three CIA]]
+*[[La LOPD]]
+*[[DCL en MySql]]</pre>
+</div>
+<div created="20141014232043839" modified="20161019225109873" tags="Actividades" title="02_Actividades DCL en MySql">
 <pre>!Actividad_1
-Recordatorio. Monta una bbdd con dos tablas una de compras y otra de productos. Establece alguna referencia de la una a la otra y algún tipo de principio semántico. ¿Cómo consigues cumplir con CIA?  
+# Crea los siguientes usuarios y asígnales los permisos indicados en la bbdd 'empresa':
+##María@~CualquierEquipo: permisos para consultar cualquier vista de la bbdd y modificarla(si se puede).
+##Pep@~CualquierEquipoDe192.168.0.*: permisos para consultar la tabla EMP, DEPT Y CLIENT. Puede otorgar los mismos permisos a otros usuarios aunque no puede crear usuarios. El número máximo de consultas que puede realizar es de 10 consultas por hora.
+##Administrador@localhost: será el administrador de esta bbdd. Tendrá, por tanto, permisos para crear tablas, vistas, rutinas, modificarlas, eliminarlas, bloquearlas, gestionar usuarios de esa bbdd.
+##Invitado@~CualquierEquipo: permisos de consulta en la columna NOM de la tabla CLIENT y APELLIDO en EMP.
+##Cambia el nombre de María por Nuria y revócale la capacidad de modificar vistas.
+##Cambia la contraseña y el nombre del Administrador por (admin, 1234) pero utilizando la bbdd mysql y la función PASSWORD().
+## Añade a los permisos de Invitado el de consultar la columna DIRECCIÓN de CLIENT pero sin utilizar la instrucción GRANT
+
+Ejercicio por parejas:
+
+#Cada elemento de la pareja, creará uno o dos usuarios y les otorgará unos permisos muy concretos.
+#A continuación, se volcará la bbdd mysql. Se le cambiará el nombre y se volverá a cargar con el nuevo nombre.
+#Se eliminan las filas (usuario root, sistema, etc) no deseadas de la bbdd recién cargada de tal manera que quede una bbdd relativamente pequeña.
+#Se envía/recibe vía correo la bbdd del compañero
+#Se carga la bbdd recibida.
+#Se averiguan qué permisos a configurado el compañero.
+
 
 !Actividad_2: 
 Recuperar contraseña de root en ~MySql:
@@ -4894,12 +4916,16 @@ Recuperar contraseña de root en ~MySql:
 !Actividad_4:Metadatos_MySql
 *Averigua el número de filas que tiene cada tabla de la base de datos 'mysql' sin acceder a la base de datos (utilizando el //information_schema//)</pre>
 </div>
-<div created="20141014230728474" modified="20141105092217976" tags="Contenido" title="01_Seguridad de la Información">
-<pre>*[[The big three CIA]]
-*[[La LOPD]]
-*[[DCL en MySql]]</pre>
+<div created="20141105002316915" modified="20141209233425997" tags="Contenido" title="02_Salvaguarda y recuperación de la Información">
+<pre>*[[Conceptos de seguridad y recuperación]]
+*[[Planificación]]
+*[[Tipos de soportes]]
+*[[Tipos de copias]]
+*[[Copias y recuperación en MySql]]
+*[[Logs en MySql]]
+*[[Replicación en MySql]]</pre>
 </div>
-<div created="20141105092254586" modified="20141105093001419" tags="Actividades" title="02_Actividades sobre copias y restauración en MySql">
+<div created="20141105092254586" modified="20161019225113457" tags="Actividades" title="03_Actividades sobre copias y restauración en MySql">
 <pre>!!Actividad_Mysql_1
 *Crea una base de datos. Llámala 'copias'. Añádele un par de tablas ~MySam. Inserta algunos datos.
 *Activa el archivo de log de cambios.
@@ -4921,16 +4947,7 @@ Realiza una copia lógica de la bbdd 'copias' dando formato a los datos de tal m
 !!Actividad_MySql_5: Ampliación
 Escribe un script de shell que realice una copia de la base de datos y la envíe a un servidor ftp.</pre>
 </div>
-<div created="20141105002316915" modified="20141209233425997" tags="Contenido" title="02_Salvaguarda y recuperación de la Información">
-<pre>*[[Conceptos de seguridad y recuperación]]
-*[[Planificación]]
-*[[Tipos de soportes]]
-*[[Tipos de copias]]
-*[[Copias y recuperación en MySql]]
-*[[Logs en MySql]]
-*[[Replicación en MySql]]</pre>
-</div>
-<div created="20141209233345792" modified="20160125152133424" title="03_Trabajo final del módulo 2">
+<div created="20141209233345792" modified="20161019225118261" title="04_Trabajo final del módulo 2">
 <pre>|!Este trabajo se puede realizar en parejas. La nota será sobre 20 y la pareja se la repartirá con los pesos que acuerden|
 Vamos a suponer que sois los administradores de un sistema gestor de base de datos basado en ~MySql en una empresa. La empresa controla la gestión de un hotel. Dicha empresa dispone de una base de datos que llamaremos BBDD del hotel. La estructura de la base de datos responde al siguiente esquema entidad-relación:
 [img[Hotel|hotel_amp.png]]
@@ -5006,13 +5023,14 @@ __Cluster__
 *[[Realizar copias de seguridad del cluster]]
 &lt;&lt;&lt;</pre>
 </div>
-<div created="20141014232025643" modified="20151005141002031" tags="[[M2 uf3]]" title="Actividades M2 uf3">
+<div created="20141014232025643" modified="20161019225121272" tags="[[M2 uf3]]" title="Actividades M2 uf3">
 <pre>''Proyectos básicos''
 
 &lt;&lt;&lt;
-*[[01_Actividades DCL en MySql]]
-*[[02_Actividades sobre copias y restauración en MySql]]
-*[[03_Trabajo final del módulo 2]]
+*[[01_Repaso SQL en MySql]]
+*[[02_Actividades DCL en MySql]]
+*[[03_Actividades sobre copias y restauración en MySql]]
+*[[04_Trabajo final del módulo 2]]
 &lt;&lt;&lt;
 ''Proyectos no básicos''
 
