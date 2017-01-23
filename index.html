@@ -167,6 +167,8 @@ Error message and password prompt
 
 <li>Actividades sobre logs en MySql</li>
 
+<li>Ampliación copias</li>
+
 <li>Añadir nodo al cluster en caliente</li>
 
 <li>Arquitectura de los sistemas gestores de bases de datos</li>
@@ -4780,13 +4782,13 @@ Error message and password prompt
 <div modified="20141014230919905" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div modified="20161019231314600" title="$:/state/sidebar">
-<pre>no</pre>
+<div modified="20170123162904525" title="$:/state/sidebar">
+<pre>yes</pre>
 </div>
 <div modified="20141105092125898" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
-<div list="Índice [[M2 uf3]] [[Actividades M2 uf3]] [[01_Repaso SQL en MySql]] [[04_Trabajo final del módulo 2]] [[03_Actividades sobre copias y restauración en MySql]] [[02_Actividades DCL en MySql]] [[M10 uf2]]" title="$:/StoryList">
+<div list="Índice [[M2 uf3]] [[Actividades M2 uf3]] [[04_Trabajo final del módulo 2]] [[Ampliación copias]] [[Actividades sobre logs en MySql]] [[03_Actividades sobre copias y restauración en MySql]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -4963,7 +4965,7 @@ Recuperar contraseña de root en ~MySql:
 *[[Logs en MySql]]
 *[[Replicación en MySql]]</pre>
 </div>
-<div created="20141105092254586" modified="20161019225113457" tags="Actividades" title="03_Actividades sobre copias y restauración en MySql">
+<div created="20141105092254586" modified="20170123155424298" tags="Actividades" title="03_Actividades sobre copias y restauración en MySql">
 <pre>!!Actividad_Mysql_1
 *Crea una base de datos. Llámala 'copias'. Añádele un par de tablas ~MySam. Inserta algunos datos.
 *Activa el archivo de log de cambios.
@@ -4971,21 +4973,17 @@ Recuperar contraseña de root en ~MySql:
 *Realiza alguna inserción más en la bbdd.
 *Supón que se produce una caída del sistema. ¿Cómo restauramos la base de datos? //Ayuda: hay que restaurar primero la copia completa y, a continuación, restaurar los cambios realizados sobre la bbdd despues de realizar la copia completa//
 
-!!Actividad_Mysql_2
-Busca información sobre Enterprise Product de ~MySql. ¿Qué ofrece?
-
-!!Actividad_MySql_3
+!!Actividad_MySql_2
 Realiza una copia física de la bbdd 'copias'. Envíasela a tu compañero. 
 Restaura la copia que te haya pasado tu compañero.
 ¿Qué archivos has tenido que copiar?¿Qué problemas te has encontrado?
 
-!!Actividad_MySql_4
+!!Actividad_MySql_3
 Realiza una copia lógica de la bbdd 'copias' dando formato a los datos de tal manera que luego se puedan cargar desde googleDocs o ~LibreOffice. ¿Se puede conseguir?¿Qué problemas tienes?
 
-!!Actividad_MySql_5: Ampliación
-Escribe un script de shell que realice una copia de la base de datos y la envíe a un servidor ftp.</pre>
+</pre>
 </div>
-<div created="20141209233345792" modified="20161019225118261" title="04_Trabajo final del módulo 2">
+<div created="20141209233345792" modified="20170123161304300" title="04_Trabajo final del módulo 2">
 <pre>|!Este trabajo se puede realizar en parejas. La nota será sobre 20 y la pareja se la repartirá con los pesos que acuerden|
 Vamos a suponer que sois los administradores de un sistema gestor de base de datos basado en ~MySql en una empresa. La empresa controla la gestión de un hotel. Dicha empresa dispone de una base de datos que llamaremos BBDD del hotel. La estructura de la base de datos responde al siguiente esquema entidad-relación:
 [img[Hotel|hotel_amp.png]]
@@ -5028,8 +5026,8 @@ También podría considerarse el automatizar la tarea y que periódicamente y de
 __CONSIDERACIONES__
 
 *El trabajo se recomienda realizarlo en parejas. Como he dicho antes, la nota la pondré a la pareja y ella decidirá que porcentaje corresponde a cada uno de los integrantes de la pareja.
-*Se dispondrá de los siguientes días para realizar el trabajo: 25/01, 01/02, 08/02, 15/02
-*La corrección &quot;visual&quot; del proyecto y entrega del trabajo se hará el día 29 del 02.
+*Se dispondrá de los siguientes días para realizar el trabajo: 26/01, 02/02, 09/02, 16/02
+*La corrección &quot;visual&quot; del proyecto y entrega del trabajo se hará el día 02 del 03.
 *Solo es obligado implementar dos tablas de toda la base de datos y los permisos de uno solo de los usuarios.
 *Se debe entregar:
 **Un pequeño documento explicando cómo se resuelven los problemas propuestos.
@@ -5061,7 +5059,7 @@ __Cluster__
 *[[Realizar copias de seguridad del cluster]]
 &lt;&lt;&lt;</pre>
 </div>
-<div created="20141014232025643" modified="20161019225121272" tags="[[M2 uf3]]" title="Actividades M2 uf3">
+<div created="20141014232025643" modified="20170123155528469" tags="[[M2 uf3]]" title="Actividades M2 uf3">
 <pre>''Proyectos básicos''
 
 &lt;&lt;&lt;
@@ -5074,6 +5072,7 @@ __Cluster__
 
 &lt;&lt;&lt;
 *[[Actividades sobre logs en MySql]]
+*[[Ampliación copias]]
 __Base de datos Oracle__
 
 *[[Instalación de Oracle en Fedora]]
@@ -5085,6 +5084,10 @@ __Base de datos Oracle__
 <pre>#Activa en //my.cnf// el registro de consultas lentas, configuralo para que registre cualquier consulta que dure más de un segundo en resolverse, a continuación (puedes utilizar la función `BENCHMARK(...)`) realiza alguna consulta lenta y comprueba que queda registrada.
 #Activa el registro general de consultas. En está ocasión vas a utilizar una tabla como salida del registro. Es decir, las sentencias no quedarán registradas en un archivo sino en una tabla que colgará de la bbdd //mysql//. Una forma de conseguirlo es cambiando la variable global `log-output=TABLE` ([[manual|http://dev.mysql.com/doc/refman/5.5/en/server-system-variables.html#sysvar_log_output]])
 #Documenta cómo se consigue tener dos instancias de ~MySqld en la misma máquina. (Capítulo 5.3 del manual). ¿Qué pasa con los logs de cada una de las instancias? </pre>
+</div>
+<div created="20170123155511518" modified="20170123155522795" tags="Actividades" title="Ampliación copias">
+<pre>
+Escribe un script de shell que realice una copia de la base de datos y la envíe a un servidor ftp.</pre>
 </div>
 <div created="20150311001407258" modified="20150311001518762" title="Añadir nodo al cluster en caliente">
 <pre>Busca en el manual cómo conseguir añadir un nodo al clúster. No olvides documentar todos los pasos.</pre>
